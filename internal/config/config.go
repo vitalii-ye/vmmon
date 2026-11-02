@@ -157,7 +157,7 @@ func Load(path string) (*Config, error) {
 		return nil, fmt.Errorf("read %s: %w", secrets, err)
 	}
 	lookup := func(k string) string {
-		if v, ok := os.LookupEnv(k); ok {
+		if v := os.Getenv(k); v != "" {
 			return v
 		}
 		return env[k]

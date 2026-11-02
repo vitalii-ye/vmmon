@@ -42,6 +42,11 @@ func TestPrecedence(t *testing.T) {
 		t.Fatalf("secret not applied")
 	}
 
+	t.Setenv("VMMON_TELEGRAM_TOKEN", "")
+	if c, err = Load(path); err != nil || c.Telegram.Token != "from-file" {
+		t.Fatalf("empty env var should not hide the secrets file: %v", err)
+	}
+
 	t.Setenv("VMMON_TELEGRAM_TOKEN", "from-env")
 	t.Setenv("VMMON_POLICY", "everything")
 	c, err = Load(path)
