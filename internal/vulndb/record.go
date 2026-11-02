@@ -67,7 +67,8 @@ type EcosystemSpecific struct {
 // Reader looks up records for one open view of the index.
 type Reader interface {
 	// RecordsFor returns the records affecting a source package in the host's
-	// release, ordered by ID.
+	// release, ordered by ID. Each record's Affected holds only that package's
+	// entries.
 	RecordsFor(sourcePackage string) ([]Record, error)
 }
 
@@ -87,7 +88,8 @@ type EcosystemMeta struct {
 	// LastAttempt and LastError describe the latest attempt, successful or not.
 	LastAttempt time.Time `json:"last_attempt"`
 	LastError   string    `json:"last_error,omitempty"`
-	// Cursor is the newest modified timestamp seen in modified_id.csv.
+	// Cursor is the newest modified timestamp applied: from modified_id.csv
+	// after an incremental sync, from all.zip's records after a full one.
 	Cursor   time.Time `json:"cursor"`
 	Records  int       `json:"records"`
 	Packages int       `json:"packages"`
@@ -101,6 +103,10 @@ type FeedMeta struct {
 	LastAttempt time.Time `json:"last_attempt"`
 	LastError   string    `json:"last_error,omitempty"`
 	Records     int       `json:"records"`
+	// Version is the feed's own: KEV's catalog version, EPSS's score date.
+	Version string `json:"version,omitempty"`
+	// SHA256 is the checksum of the last downloaded file.
+	SHA256 string `json:"sha256,omitempty"`
 }
 
 // SyncResult reports what one sync did.
@@ -112,4 +118,9 @@ type SyncResult struct {
 	// ChangedPackages is the set of source packages whose records changed. It
 	// drives the recheck.
 	ChangedPackages []string
+	// FullReason says why a full sync ran; empty for an incremental one.
+	FullReason string
+	// Records and Packages are the index's totals after the sync.
+	Records  int
+	Packages int
 }
