@@ -1,0 +1,21 @@
+version: "2"
+linters:
+  enable:
+    - bodyclose
+    - errorlint
+    - gosec
+    - misspell
+    - nilerr
+    - revive
+    - unconvert
+  settings:
+    gosec:
+      excludes:
+        - G304 # paths come from config or the --root flag by design
+        - G301
+        - G302
+        - G306
+formatters:
+  enable:
+    - gofmt
+    - goimports

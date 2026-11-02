@@ -1,0 +1,29 @@
+version: "3"
+
+vars:
+  LDFLAGS: -s -w -X github.com/vitalii-ye/vmmon/internal/buildinfo.Version={{.VERSION | default "dev"}}
+
+tasks:
+  build:
+    desc: Build a static binary for the local platform
+    env: { CGO_ENABLED: "0" }
+    cmds:
+      - go build -trimpath -ldflags "{{.LDFLAGS}}" -o dist/vmmon ./cmd/vmmon
+  build:linux:
+    desc: Build static Linux binaries for amd64 and arm64
+    env: { CGO_ENABLED: "0", GOOS: linux }
+    cmds:
+      - GOARCH=amd64 go build -trimpath -ldflags "{{.LDFLAGS}}" -o dist/vmmon-linux-amd64 ./cmd/vmmon
+      - GOARCH=arm64 go build -trimpath -ldflags "{{.LDFLAGS}}" -o dist/vmmon-linux-arm64 ./cmd/vmmon
+  test:
+    desc: Run unit tests
+    cmds:
+      - go test -race ./...
+  lint:
+    desc: Run golangci-lint
+    cmds:
+      - golangci-lint run
+  snapshot:
+    desc: Build a local goreleaser snapshot
+    cmds:
+      - goreleaser release --snapshot --clean
