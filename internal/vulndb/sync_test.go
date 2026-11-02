@@ -959,3 +959,55 @@ func TestMain(m *testing.M) {
 	slog.SetDefault(slog.New(slog.DiscardHandler))
 	os.Exit(m.Run())
 }
+
+func TestEachRecord(t *testing.T) {
+	f := newFake(t)
+	base := time.Date(2026, 1, 1, 0, 0, 0, 0, time.UTC)
+	f.set("B-2", base, eco12+"/foo", eco12+"/bar")
+	f.set("A-1", base, eco12+"/foo", "Debian:13/foo")
+	f.set("C-3", base, "Debian:13/foo")
+	s, _ := testStore(t, f)
+	mustSync(t, s, SyncOptions{Full: true})
+
+	err := s.View(context.Background(), func(r Reader) error {
+		var ids []string
+		err := r.EachRecord("foo", func(rec Record) error {
+			ids = append(ids, rec.ID)
+			for _, a := range rec.Affected {
+				if a.Package.Name != "foo" || a.Package.Ecosystem != eco12 {
+					t.Errorf("%s has entry %+v", rec.ID, a.Package)
+				}
+			}
+			return nil
+		})
+		if err != nil {
+			return err
+		}
+		if want := []string{"A-1", "B-2"}; !slices.Equal(ids, want) {
+			t.Errorf("ids = %v, want %v", ids, want)
+		}
+		all, err := r.RecordsFor("foo")
+		if err != nil {
+			return err
+		}
+		if len(all) != 2 || all[0].ID != "A-1" {
+			t.Errorf("RecordsFor = %+v", all)
+		}
+
+		stop := errors.New("stop")
+		calls := 0
+		err = r.EachRecord("foo", func(Record) error { calls++; return stop })
+		if !errors.Is(err, stop) || calls != 1 {
+			t.Errorf("err = %v after %d calls", err, calls)
+		}
+		for _, pkg := range []string{"", "absent"} {
+			if err := r.EachRecord(pkg, func(Record) error { t.Error("called"); return nil }); err != nil {
+				t.Errorf("EachRecord(%q) = %v", pkg, err)
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+}

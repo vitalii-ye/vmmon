@@ -1,0 +1,4 @@
+#model_version:v2026.06.15,score_date:2026-11-02T12:00:30Z
+cve,epss,percentile
+CVE-2023-4911,0.73000,0.98800
+CVE-2025-31115,0.00500,0.40000

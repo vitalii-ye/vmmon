@@ -1,0 +1,35 @@
+{
+  "id": "DSA-5514-1",
+  "modified": "2026-03-09T02:11:04.229485Z",
+  "summary": "glibc - security update",
+  "upstream": [
+    "CVE-2023-4911",
+    "DEBIAN-CVE-2023-4911"
+  ],
+  "affected": [
+    {
+      "package": {
+        "name": "glibc",
+        "ecosystem": "Debian:12"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "2.36-9+deb12u3"
+            }
+          ]
+        }
+      ],
+      "versions": [
+        "2.36-9",
+        "2.36-9+deb12u1",
+        "2.36-9+deb12u2"
+      ]
+    }
+  ]
+}

@@ -70,6 +70,12 @@ type Reader interface {
 	// release, ordered by ID. Each record's Affected holds only that package's
 	// entries.
 	RecordsFor(sourcePackage string) ([]Record, error)
+	// EachRecord calls fn with the same records in the same order, decoding one
+	// at a time. Prefer it for large packages: linux alone has over 10000 records,
+	// which RecordsFor must hold in memory together. fn must not keep rec beyond
+	// the call unless it copies what it needs. The first error from fn stops the
+	// iteration and is returned.
+	EachRecord(sourcePackage string, fn func(rec Record) error) error
 }
 
 // Meta is the content of meta.json.

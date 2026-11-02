@@ -1,0 +1,29 @@
+{
+  "id": "DSA-9999-1",
+  "modified": "2026-01-01T00:00:00Z",
+  "summary": "handwritten: the fix-version override drops this CVE",
+  "affected": [
+    {
+      "package": {
+        "name": "bash",
+        "ecosystem": "Debian:12"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "5.2.15-1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "upstream": [
+    "CVE-2099-0001"
+  ]
+}

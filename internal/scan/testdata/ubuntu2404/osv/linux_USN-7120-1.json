@@ -1,0 +1,45 @@
+{
+  "id": "USN-7120-1",
+  "modified": "2026-10-29T20:02:34.128649242Z",
+  "summary": "linux, linux-aws, linux-gcp, linux-gcp-6.8, linux-gke, linux-hwe-6.8, linux-ibm, linux-nvidia, linux-nvidia-6.8, linux-nvidia-lowlatency, linux-oem-6.8, linux-oracle, linux-raspi vulnerabilities",
+  "upstream": [
+    "CVE-2024-43882",
+    "CVE-2024-46800",
+    "UBUNTU-CVE-2024-43882",
+    "UBUNTU-CVE-2024-46800"
+  ],
+  "related": [
+    "UBUNTU-CVE-2024-43882",
+    "UBUNTU-CVE-2024-46800"
+  ],
+  "affected": [
+    {
+      "package": {
+        "name": "linux",
+        "ecosystem": "Ubuntu:24.04:LTS"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "6.8.0-49.49"
+            }
+          ]
+        }
+      ],
+      "versions": [
+        "6.5.0-9.9",
+        "6.6.0-14.14",
+        "6.8.0-11.11",
+        "6.8.0-20.20"
+      ],
+      "ecosystem_specific": {
+        "availability": "No subscription required"
+      }
+    }
+  ]
+}

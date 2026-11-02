@@ -1,0 +1,69 @@
+{
+  "id": "USN-8414-1",
+  "modified": "2026-06-30T18:17:25.786836678Z",
+  "summary": "openssl vulnerabilities",
+  "upstream": [
+    "UBUNTU-CVE-2026-7383",
+    "UBUNTU-CVE-2026-9076",
+    "UBUNTU-CVE-2026-34180",
+    "UBUNTU-CVE-2026-34181",
+    "UBUNTU-CVE-2026-34182",
+    "UBUNTU-CVE-2026-34183",
+    "UBUNTU-CVE-2026-42764",
+    "UBUNTU-CVE-2026-42766",
+    "UBUNTU-CVE-2026-42767",
+    "UBUNTU-CVE-2026-42768",
+    "UBUNTU-CVE-2026-42769",
+    "UBUNTU-CVE-2026-42770",
+    "UBUNTU-CVE-2026-45445",
+    "UBUNTU-CVE-2026-45446",
+    "UBUNTU-CVE-2026-45447"
+  ],
+  "related": [
+    "UBUNTU-CVE-2026-34180",
+    "UBUNTU-CVE-2026-34181",
+    "UBUNTU-CVE-2026-34182",
+    "UBUNTU-CVE-2026-34183",
+    "UBUNTU-CVE-2026-42764",
+    "UBUNTU-CVE-2026-42766",
+    "UBUNTU-CVE-2026-42767",
+    "UBUNTU-CVE-2026-42768",
+    "UBUNTU-CVE-2026-42769",
+    "UBUNTU-CVE-2026-42770",
+    "UBUNTU-CVE-2026-45445",
+    "UBUNTU-CVE-2026-45446",
+    "UBUNTU-CVE-2026-45447",
+    "UBUNTU-CVE-2026-7383",
+    "UBUNTU-CVE-2026-9076"
+  ],
+  "affected": [
+    {
+      "package": {
+        "name": "openssl",
+        "ecosystem": "Ubuntu:24.04:LTS"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "3.0.13-0ubuntu3.11"
+            }
+          ]
+        }
+      ],
+      "versions": [
+        "3.0.10-1ubuntu2",
+        "3.0.10-1ubuntu2.1",
+        "3.0.10-1ubuntu3",
+        "3.0.10-1ubuntu4"
+      ],
+      "ecosystem_specific": {
+        "availability": "No subscription required"
+      }
+    }
+  ]
+}

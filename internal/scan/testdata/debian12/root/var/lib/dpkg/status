@@ -1,0 +1,204 @@
+Package: bash
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: bash (5.2.15-2)
+Version: 5.2.15-2+b2
+Description: golden fixture
+ fixture
+
+Package: bsdutils
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: util-linux (2.38.1-5+deb12u1)
+Version: 1:2.38.1-5+deb12u1
+Description: golden fixture
+ fixture
+
+Package: curl
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Version: 7.88.1-10
+Description: golden fixture
+ fixture
+
+Package: libc-bin
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: glibc
+Version: 2.36-9+deb12u1
+Description: golden fixture
+ fixture
+
+Package: libc6
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: glibc
+Version: 2.36-9+deb12u1
+Description: golden fixture
+ fixture
+
+Package: libcurl4
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: curl
+Version: 7.88.1-10
+Description: golden fixture
+ fixture
+
+Package: libldb2
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: samba (2:4.17.8+dfsg-2)
+Version: 2:2.6.2+samba4.17.8+dfsg-2
+Description: golden fixture
+ fixture
+
+Package: libpam-doc
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: pam
+Version: 1.5.2-6
+Description: golden fixture
+ fixture
+
+Package: libpam-modules
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: pam
+Version: 1.5.2-6+deb12u1
+Description: golden fixture
+ fixture
+
+Package: libssl3
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: openssl
+Version: 3.0.9-1
+Description: golden fixture
+ fixture
+
+Package: linux-base
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Version: 4.9
+Description: golden fixture
+ fixture
+
+Package: linux-image-6.1.0-13-amd64
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: linux-signed-amd64 (6.1.55+1)
+Version: 6.1.55-1
+Description: golden fixture
+ fixture
+
+Package: linux-image-6.1.0-26-amd64
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: linux-signed-amd64 (6.1.112+1)
+Version: 6.1.112-1
+Description: golden fixture
+ fixture
+
+Package: linux-image-amd64
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: linux-signed-amd64 (6.1.112+1)
+Version: 6.1.112-1
+Description: golden fixture
+ fixture
+
+Package: linux-libc-dev
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: linux
+Version: 6.1.90-1
+Description: golden fixture
+ fixture
+
+Package: openssl
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Version: 3.0.9-1
+Description: golden fixture
+ fixture
+
+Package: samba
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Version: 2:4.17.8+dfsg-2
+Description: golden fixture
+ fixture
+
+Package: util-linux
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Version: 2.38.1-5+deb12u1
+Description: golden fixture
+ fixture
+
+Package: libc6
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: i386
+Source: glibc
+Version: 2.36-9+deb12u1
+Description: golden fixture
+ fixture
+

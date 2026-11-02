@@ -1,0 +1,38 @@
+{
+  "id": "DSA-5523-1",
+  "modified": "2026-03-09T02:10:53.650195Z",
+  "summary": "curl - security update",
+  "upstream": [
+    "CVE-2023-38545",
+    "CVE-2023-38546",
+    "DEBIAN-CVE-2023-38545",
+    "DEBIAN-CVE-2023-38546"
+  ],
+  "affected": [
+    {
+      "package": {
+        "name": "curl",
+        "ecosystem": "Debian:12"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "7.88.1-10+deb12u4"
+            }
+          ]
+        }
+      ],
+      "versions": [
+        "7.88.1-10",
+        "7.88.1-10+deb12u1",
+        "7.88.1-10+deb12u1~bpo11+1",
+        "7.88.1-10+deb12u2"
+      ]
+    }
+  ]
+}

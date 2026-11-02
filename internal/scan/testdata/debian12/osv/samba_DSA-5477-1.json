@@ -1,0 +1,44 @@
+{
+  "id": "DSA-5477-1",
+  "modified": "2026-03-09T02:10:16.457964Z",
+  "summary": "samba - security update",
+  "upstream": [
+    "CVE-2022-2127",
+    "CVE-2023-3347",
+    "CVE-2023-34966",
+    "CVE-2023-34967",
+    "CVE-2023-34968",
+    "DEBIAN-CVE-2022-2127",
+    "DEBIAN-CVE-2023-3347",
+    "DEBIAN-CVE-2023-34966",
+    "DEBIAN-CVE-2023-34967",
+    "DEBIAN-CVE-2023-34968"
+  ],
+  "affected": [
+    {
+      "package": {
+        "name": "samba",
+        "ecosystem": "Debian:12"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "2:4.17.10+dfsg-0+deb12u1"
+            }
+          ]
+        }
+      ],
+      "versions": [
+        "2:4.17.10+dfsg-0+deb12u1~bpo11+1",
+        "2:4.17.8+dfsg-2",
+        "2:4.17.8+dfsg-2.1",
+        "2:4.17.9+dfsg-0+deb12u1"
+      ]
+    }
+  ]
+}

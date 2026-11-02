@@ -1,0 +1,45 @@
+{
+  "id": "USN-8015-1",
+  "modified": "2026-07-31T14:35:26.539405746Z",
+  "summary": "linux, linux-gke, linux-gkeop, linux-hwe-6.8, linux-oracle, linux-oracle-6.8, linux-raspi vulnerabilities",
+  "upstream": [
+    "UBUNTU-CVE-2025-38561",
+    "UBUNTU-CVE-2025-39698",
+    "UBUNTU-CVE-2025-40019"
+  ],
+  "related": [
+    "UBUNTU-CVE-2025-38561",
+    "UBUNTU-CVE-2025-39698",
+    "UBUNTU-CVE-2025-40019"
+  ],
+  "affected": [
+    {
+      "package": {
+        "name": "linux",
+        "ecosystem": "Ubuntu:24.04:LTS"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "6.8.0-94.96"
+            }
+          ]
+        }
+      ],
+      "versions": [
+        "6.5.0-9.9",
+        "6.6.0-14.14",
+        "6.8.0-11.11",
+        "6.8.0-20.20"
+      ],
+      "ecosystem_specific": {
+        "availability": "No subscription required"
+      }
+    }
+  ]
+}

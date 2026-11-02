@@ -1,0 +1,96 @@
+Package: liblzma5
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: xz-utils
+Version: 5.6.1+really5.4.5-1
+Description: golden fixture
+ fixture
+
+Package: libpam0g
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: pam
+Version: 1.5.3-5ubuntu5.1
+Description: golden fixture
+ fixture
+
+Package: libssl3t64
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: openssl
+Version: 3.0.13-0ubuntu3.1
+Description: golden fixture
+ fixture
+
+Package: linux-image-6.8.0-45-generic
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: linux-signed
+Version: 6.8.0-45.45
+Description: golden fixture
+ fixture
+
+Package: linux-libc-dev
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: linux
+Version: 6.8.0-31.31
+Description: golden fixture
+ fixture
+
+Package: linux-modules-6.8.0-45-generic
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Source: linux
+Version: 6.8.0-45.45
+Description: golden fixture
+ fixture
+
+Package: openssl
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Version: 3.0.13-0ubuntu3.1
+Description: golden fixture
+ fixture
+
+Package: sed
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Version: 4.9-2build1
+Description: golden fixture
+ fixture
+
+Package: xz-utils
+Status: install ok installed
+Priority: optional
+Section: misc
+Maintainer: Fixture <fixture@example.org>
+Architecture: amd64
+Version: 5.6.1+really5.4.5-1
+Description: golden fixture
+ fixture
+

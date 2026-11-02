@@ -97,6 +97,12 @@ type Report struct {
 	RunningKernel  string    `json:"running_kernel,omitempty"`
 	RebootRequired bool      `json:"reboot_required"`
 	PackagesCount  int       `json:"packages_count"`
-	Counts         Counts    `json:"counts"`
-	Findings       []Finding `json:"findings"`
+	// Partial means only some source packages were matched, so a finding absent
+	// here is not necessarily gone.
+	Partial bool `json:"partial,omitempty"`
+	// Warnings says what the scan could not vouch for: a kernel whose source has no
+	// records, a stale database.
+	Warnings []string  `json:"warnings,omitempty"`
+	Counts   Counts    `json:"counts"`
+	Findings []Finding `json:"findings"`
 }

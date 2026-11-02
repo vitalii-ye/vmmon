@@ -1,0 +1,1336 @@
+{
+  "hostname": "golden-debian",
+  "ecosystem": "Debian:12",
+  "scanned_at": "2026-11-02T15:00:00Z",
+  "db_synced_at": "2026-11-02T12:00:00Z",
+  "db_age_seconds": 10800,
+  "reboot_required": false,
+  "packages_count": 19,
+  "counts": {
+    "total": 72,
+    "kev": 1,
+    "fix_available": 47,
+    "no_fix_yet": 25
+  },
+  "findings": [
+    {
+      "id": "e4e59bd42afcac47e752e860d690fcf48039ea9d7ac5bf90b1ed1aee6e45d0a6",
+      "ecosystem": "Debian:12",
+      "source_package": "curl",
+      "installed_version": "7.88.1-10",
+      "binary_packages": [
+        "curl",
+        "libcurl4"
+      ],
+      "vuln_id": "CVE-2023-38039",
+      "advisory_ids": [
+        "DEBIAN-CVE-2023-38039"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "7.88.1-10+deb12u3",
+      "cvss_score": 7.5,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "kev": false
+    },
+    {
+      "id": "3f3bcad60f09f0d90fc21c2fda0e6cc88fac2b5ef360734c254a79cabe228153",
+      "ecosystem": "Debian:12",
+      "source_package": "curl",
+      "installed_version": "7.88.1-10",
+      "binary_packages": [
+        "curl",
+        "libcurl4"
+      ],
+      "vuln_id": "CVE-2023-38545",
+      "advisory_ids": [
+        "DEBIAN-CVE-2023-38545",
+        "DSA-5523-1"
+      ],
+      "summary": "curl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "7.88.1-10+deb12u4",
+      "cvss_score": 9.8,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "kev": false
+    },
+    {
+      "id": "065597994bd447efab31c691b6964b740993647acfc3d840ddf6fa82f88d74b5",
+      "ecosystem": "Debian:12",
+      "source_package": "curl",
+      "installed_version": "7.88.1-10",
+      "binary_packages": [
+        "curl",
+        "libcurl4"
+      ],
+      "vuln_id": "CVE-2023-38546",
+      "advisory_ids": [
+        "DSA-5523-1"
+      ],
+      "summary": "curl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "7.88.1-10+deb12u4",
+      "kev": false
+    },
+    {
+      "id": "2c6403f398687e2aacfe3a297516fa1c7838038984ad0bb2ac4b9a144636b1b1",
+      "ecosystem": "Debian:12",
+      "source_package": "curl",
+      "installed_version": "7.88.1-10",
+      "binary_packages": [
+        "curl",
+        "libcurl4"
+      ],
+      "vuln_id": "CVE-2023-46218",
+      "advisory_ids": [
+        "DSA-5587-1"
+      ],
+      "summary": "curl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "7.88.1-10+deb12u5",
+      "kev": false
+    },
+    {
+      "id": "37aba7046ef1ec94a1fc41082ab7ed9060b9663ab582fee04c4ebd834028c954",
+      "ecosystem": "Debian:12",
+      "source_package": "curl",
+      "installed_version": "7.88.1-10",
+      "binary_packages": [
+        "curl",
+        "libcurl4"
+      ],
+      "vuln_id": "CVE-2024-2379",
+      "advisory_ids": [
+        "DEBIAN-CVE-2024-2379"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 6.3,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:L",
+      "severity_label": "unimportant",
+      "kev": false
+    },
+    {
+      "id": "dbd6060fae322236f4e5bf5dd008763844e67d8d7bd8653893a3f0fef4a94ac5",
+      "ecosystem": "Debian:12",
+      "source_package": "curl",
+      "installed_version": "7.88.1-10",
+      "binary_packages": [
+        "curl",
+        "libcurl4"
+      ],
+      "vuln_id": "CVE-2025-0725",
+      "advisory_ids": [
+        "DEBIAN-CVE-2025-0725"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 7.3,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+      "severity_label": "unimportant",
+      "kev": false
+    },
+    {
+      "id": "ad8d3fcf2e9f5d54a83ece0a85ebbf1b13a805548e7137fd15df5f9511e1a19e",
+      "ecosystem": "Debian:12",
+      "source_package": "curl",
+      "installed_version": "7.88.1-10",
+      "binary_packages": [
+        "curl",
+        "libcurl4"
+      ],
+      "vuln_id": "CVE-2026-10536",
+      "advisory_ids": [
+        "DEBIAN-CVE-2026-10536"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 9.8,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "kev": false
+    },
+    {
+      "id": "c00354a167dad4193c4aa1fed642e999da80a37c670b23601a9dbb95f66cdb0e",
+      "ecosystem": "Debian:12",
+      "source_package": "curl",
+      "installed_version": "7.88.1-10",
+      "binary_packages": [
+        "curl",
+        "libcurl4"
+      ],
+      "vuln_id": "CVE-2026-107928",
+      "advisory_ids": [
+        "DEBIAN-CVE-2026-107928"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 8.1,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "kev": false
+    },
+    {
+      "id": "33185281cfb680499377abafc6c9f69083f24f741703158ccafd52c9d14aaa89",
+      "ecosystem": "Debian:12",
+      "source_package": "curl",
+      "installed_version": "7.88.1-10",
+      "binary_packages": [
+        "curl",
+        "libcurl4"
+      ],
+      "vuln_id": "DSA-5460-1",
+      "advisory_ids": [
+        "DSA-5460-1"
+      ],
+      "summary": "curl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "7.88.1-10+deb12u1",
+      "kev": false
+    },
+    {
+      "id": "c0c94156e07d95a2ef3ab83a12bf3276f8b7222eae3d8910c3fbdcc7e0ad4dd7",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2010-4756",
+      "advisory_ids": [
+        "DEBIAN-CVE-2010-4756"
+      ],
+      "fix_status": "no-fix-yet",
+      "severity_label": "unimportant",
+      "kev": false
+    },
+    {
+      "id": "6ef8ee4c6f3978501e1a2c608ec78389b23c38e4614c9633c556ec9092a699cb",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2018-20796",
+      "advisory_ids": [
+        "DEBIAN-CVE-2018-20796"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 7.5,
+      "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "severity_label": "unimportant",
+      "kev": false
+    },
+    {
+      "id": "cd4a1619cb73cc8e2079c99ee9081c557f47a4f85d73edfe779d1c6a23712dd1",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2023-4527",
+      "advisory_ids": [
+        "DEBIAN-CVE-2023-4527"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u3",
+      "cvss_score": 6.5,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:H",
+      "kev": false
+    },
+    {
+      "id": "df0ec7a03079a871bee6d6112cff0291bcdfa160f5e84bdb83274b591ebdead0",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2023-4806",
+      "advisory_ids": [
+        "DEBIAN-CVE-2023-4806"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u3",
+      "cvss_score": 5.9,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "kev": false
+    },
+    {
+      "id": "cb9a445d4ed61e8dc2e9f34a2202f9c97ce1fe0df311505277caba36449a6ee6",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2023-4911",
+      "advisory_ids": [
+        "DSA-5514-1"
+      ],
+      "summary": "glibc - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u3",
+      "kev": true,
+      "kev_date_added": "2023-11-21T00:00:00Z",
+      "epss": 0.73,
+      "epss_percentile": 0.988
+    },
+    {
+      "id": "4e4267a68faaace30880f3cbe92bf4efddd74ce86873f7fa10026ad400ce672f",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2023-6246",
+      "advisory_ids": [
+        "DSA-5611-1"
+      ],
+      "summary": "glibc - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u4",
+      "kev": false
+    },
+    {
+      "id": "5179cde3bb57312dd0764f3cb0166f1deb356ecd639f1a2938f5d69c362d761e",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2023-6779",
+      "advisory_ids": [
+        "DSA-5611-1"
+      ],
+      "summary": "glibc - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u4",
+      "kev": false
+    },
+    {
+      "id": "c0dda1a1f031c54f23253e2d58ac7c29b9496aa7e28483f6e186f1cda9ab2b54",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2023-6780",
+      "advisory_ids": [
+        "DSA-5611-1"
+      ],
+      "summary": "glibc - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u4",
+      "kev": false
+    },
+    {
+      "id": "279d906c83b92633940e40f0bced29f874a5eaf84c77a87f6746704239e66080",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2024-2961",
+      "advisory_ids": [
+        "DSA-5673-1"
+      ],
+      "summary": "glibc - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u6",
+      "kev": false
+    },
+    {
+      "id": "a9d0c48dd3deefb74f736fdf8b660add552300b12f2410e5d23644cff372ea60",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2024-33599",
+      "advisory_ids": [
+        "DSA-5678-1"
+      ],
+      "summary": "glibc - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u7",
+      "kev": false
+    },
+    {
+      "id": "b56e51c95977a87752024e71aedf71bf81a4312ff8ea26c6185f9a8c16736fcc",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2024-33600",
+      "advisory_ids": [
+        "DSA-5678-1"
+      ],
+      "summary": "glibc - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u7",
+      "kev": false
+    },
+    {
+      "id": "0e7b1d48fc512319c80d46f2f2eae001fa9a30226c958e7221dafaaaf42019d3",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2024-33601",
+      "advisory_ids": [
+        "DSA-5678-1"
+      ],
+      "summary": "glibc - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u7",
+      "kev": false
+    },
+    {
+      "id": "1db718825fcdf375bce28f472cb4326859bea4e7c0c52c8fb7e9a1033e751115",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2024-33602",
+      "advisory_ids": [
+        "DSA-5678-1"
+      ],
+      "summary": "glibc - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u7",
+      "kev": false
+    },
+    {
+      "id": "01fa2007bb95bd849d4b8d2fe6595928d001a4c6aa6bbfe4d46bc38fd88197ee",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2025-8058",
+      "advisory_ids": [
+        "DEBIAN-CVE-2025-8058"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "2.36-9+deb12u13",
+      "cvss_score": 5.9,
+      "cvss_vector": "CVSS:4.0/AV:L/AC:H/AT:P/PR:L/UI:P/VC:L/VI:L/VA:H/SC:L/SI:L/SA:H/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X",
+      "kev": false
+    },
+    {
+      "id": "cf0644a5f7c0adb296d9cc29121d407710ff7cdf9cf45af886d3d7c6079ed526",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2026-18374",
+      "advisory_ids": [
+        "DEBIAN-CVE-2026-18374"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 4.9,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L",
+      "kev": false
+    },
+    {
+      "id": "8f2bfac7dc413e5214a505ad35d8c7d4e62c8ba1ee27b553b635d0ca120f1311",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2026-19499",
+      "advisory_ids": [
+        "DEBIAN-CVE-2026-19499"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 7.7,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:H",
+      "kev": false
+    },
+    {
+      "id": "63ffd13bb1f708efc02e2aca908f5e35251fb354fae9f4d1a95c0b9d0496fcfe",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2026-6368",
+      "advisory_ids": [
+        "DEBIAN-CVE-2026-6368"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 2.1,
+      "cvss_vector": "CVSS:4.0/AV:L/AC:H/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:L/SI:L/SA:L/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:P/AU:Y/R:X/V:X/RE:X/U:Green",
+      "kev": false
+    },
+    {
+      "id": "20edf7a9d7fa905e623d8febe196da7a1395918eb65214cc850baa4df976d64c",
+      "ecosystem": "Debian:12",
+      "source_package": "glibc",
+      "installed_version": "2.36-9+deb12u1",
+      "binary_packages": [
+        "libc-bin",
+        "libc6"
+      ],
+      "vuln_id": "CVE-2026-6791",
+      "advisory_ids": [
+        "DEBIAN-CVE-2026-6791"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 9,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:L/VI:L/VA:H/SC:N/SI:L/SA:H/E:U/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X",
+      "kev": false
+    },
+    {
+      "id": "090a5264be0b43709f1880928e115a958d14c266a800babb8a7680db5b5a47bb",
+      "ecosystem": "Debian:12",
+      "source_package": "linux",
+      "installed_version": "6.1.112-1",
+      "binary_packages": [
+        "linux-image-6.1.0-26-amd64"
+      ],
+      "vuln_id": "CVE-2004-0230",
+      "advisory_ids": [
+        "DEBIAN-CVE-2004-0230"
+      ],
+      "fix_status": "no-fix-yet",
+      "severity_label": "unimportant",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "8f64f2b0c8f462f5152b5b4bfb3d2ca4214cb0928f46d2f167e875115f995070",
+      "ecosystem": "Debian:12",
+      "source_package": "linux",
+      "installed_version": "6.1.112-1",
+      "binary_packages": [
+        "linux-image-6.1.0-26-amd64"
+      ],
+      "vuln_id": "CVE-2005-3660",
+      "advisory_ids": [
+        "DEBIAN-CVE-2005-3660"
+      ],
+      "fix_status": "no-fix-yet",
+      "severity_label": "unimportant",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "66499cdf00863a345a15107f3ecdf88dbf76ca85223089aa8d14ce7601539773",
+      "ecosystem": "Debian:12",
+      "source_package": "linux",
+      "installed_version": "6.1.112-1",
+      "binary_packages": [
+        "linux-image-6.1.0-26-amd64"
+      ],
+      "vuln_id": "CVE-2013-7445",
+      "advisory_ids": [
+        "DEBIAN-CVE-2013-7445"
+      ],
+      "fix_status": "no-fix-yet",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "27a9ed36da6db598d813f299cfb3b313a8374e4a34b3f583456487ceb098bf26",
+      "ecosystem": "Debian:12",
+      "source_package": "linux",
+      "installed_version": "6.1.112-1",
+      "binary_packages": [
+        "linux-image-6.1.0-26-amd64"
+      ],
+      "vuln_id": "CVE-2018-12928",
+      "advisory_ids": [
+        "DEBIAN-CVE-2018-12928"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 5.5,
+      "cvss_vector": "CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+      "severity_label": "low",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "e9102a2461384c8fad673a5a7cdf5e2dada843dae59f711a5ba669fa451d0ae3",
+      "ecosystem": "Debian:12",
+      "source_package": "linux",
+      "installed_version": "6.1.112-1",
+      "binary_packages": [
+        "linux-image-6.1.0-26-amd64"
+      ],
+      "vuln_id": "CVE-2019-15213",
+      "advisory_ids": [
+        "DEBIAN-CVE-2019-15213"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 4.6,
+      "cvss_vector": "CVSS:3.1/AV:P/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "a932c9e98f9c3f376090f109c34d4f653bc856c91fb85b8d28dd244d7d22086d",
+      "ecosystem": "Debian:12",
+      "source_package": "linux",
+      "installed_version": "6.1.112-1",
+      "binary_packages": [
+        "linux-image-6.1.0-26-amd64"
+      ],
+      "vuln_id": "CVE-2022-45888",
+      "advisory_ids": [
+        "DEBIAN-CVE-2022-45888"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "6.1.119-1",
+      "cvss_score": 6.4,
+      "cvss_vector": "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "2b19ad8462af15b3053ae414f7697ce2934b81ef75c32e503544f73edc709a41",
+      "ecosystem": "Debian:12",
+      "source_package": "linux",
+      "installed_version": "6.1.112-1",
+      "binary_packages": [
+        "linux-image-6.1.0-26-amd64"
+      ],
+      "vuln_id": "CVE-2022-49034",
+      "advisory_ids": [
+        "DEBIAN-CVE-2022-49034"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "6.1.123-1",
+      "cvss_score": 5.5,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "b05b0e619a122b74c4ff3c15cbd728b9e0f2e146264c9bb1676acd52b737e397",
+      "ecosystem": "Debian:12",
+      "source_package": "linux",
+      "installed_version": "6.1.112-1",
+      "binary_packages": [
+        "linux-image-6.1.0-26-amd64"
+      ],
+      "vuln_id": "CVE-2024-28956",
+      "advisory_ids": [
+        "DEBIAN-CVE-2024-28956"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "6.1.140-1",
+      "cvss_score": 5.7,
+      "cvss_vector": "CVSS:4.0/AV:L/AC:H/AT:P/PR:L/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "f8fde032e448d3adfbd838b9177352a7517a60dc3855df88d113d9de5ce5b7e6",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2023-2975",
+      "advisory_ids": [
+        "DEBIAN-CVE-2023-2975"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.10-1~deb12u1",
+      "cvss_score": 5.3,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+      "kev": false
+    },
+    {
+      "id": "859302c40b38a42e708a1ab097c27ffdbf09c88ca1b377c25b81d54ed8a251b3",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2023-3446",
+      "advisory_ids": [
+        "DEBIAN-CVE-2023-3446"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.10-1~deb12u1",
+      "cvss_score": 5.3,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+      "kev": false
+    },
+    {
+      "id": "29035b95a3efc7c9d7927551dfa125d7d4432f48dc47728ff1d1f91da2390828",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2023-5363",
+      "advisory_ids": [
+        "DSA-5532-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.11-1~deb12u2",
+      "kev": false
+    },
+    {
+      "id": "2e08bdab611d837ca87127cc53a7650b1d3b6bba099da7af17066fdae6b567b6",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2024-6119",
+      "advisory_ids": [
+        "DSA-5764-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.14-1~deb12u2",
+      "kev": false
+    },
+    {
+      "id": "3d0ccb9dc18c729402999a14d4006f090c35360beec68d6684f0e0b032e0176f",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2025-15467",
+      "advisory_ids": [
+        "DSA-6113-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.18-1~deb12u2",
+      "kev": false
+    },
+    {
+      "id": "c405392b8b881506272feb438c5bcc386527f5419b40b6c97c9b949bf0b420bd",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2025-27587",
+      "advisory_ids": [
+        "DEBIAN-CVE-2025-27587"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 5.3,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
+      "severity_label": "unimportant",
+      "kev": false
+    },
+    {
+      "id": "cfc06e1d70d7e5791f30523c70da814ed2d9feb10f60f8e076f6820290f8ce7d",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2025-68160",
+      "advisory_ids": [
+        "DSA-6113-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.18-1~deb12u2",
+      "kev": false
+    },
+    {
+      "id": "39f08ff77b89a3018d5b5cc31c9f6843635346a8aa2e2ce028ceba2574013b80",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2025-69418",
+      "advisory_ids": [
+        "DSA-6113-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.18-1~deb12u2",
+      "kev": false
+    },
+    {
+      "id": "5f001d8458caf7511f0fd7ec4d34cc0708f3ae894fe73e983f0686d6024d2858",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2025-69419",
+      "advisory_ids": [
+        "DSA-6113-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.18-1~deb12u2",
+      "kev": false
+    },
+    {
+      "id": "5db63b172a8e997a470a4c9652be0edc2e03c94749997d2b66f6d88008715eb8",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2025-69420",
+      "advisory_ids": [
+        "DSA-6113-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.18-1~deb12u2",
+      "kev": false
+    },
+    {
+      "id": "89a2becc740f0d836c0c2d8fb17b22cd54fa8125dcd6ac9d62b71110f70d2628",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2025-69421",
+      "advisory_ids": [
+        "DSA-6113-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.18-1~deb12u2",
+      "kev": false
+    },
+    {
+      "id": "fca677484602271b86d494f3d2da1f9674f2b3f6677cafc8b73cd663d2d605c6",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2025-9230",
+      "advisory_ids": [
+        "DSA-6015-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.17-1~deb12u3",
+      "kev": false
+    },
+    {
+      "id": "4a389c656b1db6dcdb59902b3823bb4670a87dee2797fbe49b88dc26259e191f",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2025-9232",
+      "advisory_ids": [
+        "DSA-6015-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.17-1~deb12u3",
+      "kev": false
+    },
+    {
+      "id": "cd9f6293930cfde8f5aed35ae65ecdb2346278549e44ff64680a658bb09ddea8",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-22795",
+      "advisory_ids": [
+        "DSA-6113-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.18-1~deb12u2",
+      "kev": false
+    },
+    {
+      "id": "20bae49ce0883291d9740020b291bcfa17de2853d93b60c23f127c2f3c305232",
+      "ecosystem": "Debian:12",
+      "source_package": "openssl",
+      "installed_version": "3.0.9-1",
+      "binary_packages": [
+        "libssl3",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-22796",
+      "advisory_ids": [
+        "DSA-6113-1"
+      ],
+      "summary": "openssl - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.18-1~deb12u2",
+      "kev": false
+    },
+    {
+      "id": "fccecd175384f8e976522846fa03a2417e03b7ed677c3e5f372a07a3e9498337",
+      "ecosystem": "Debian:12",
+      "source_package": "pam",
+      "installed_version": "1.5.2-6",
+      "binary_packages": [
+        "libpam-doc",
+        "libpam-modules"
+      ],
+      "vuln_id": "CVE-2024-10041",
+      "advisory_ids": [
+        "DEBIAN-CVE-2024-10041"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 4.7,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
+      "kev": false
+    },
+    {
+      "id": "c255f621f7787ccb53ebbc8f87bfc3c9612245dca889ce6e7ac2952984cb36b3",
+      "ecosystem": "Debian:12",
+      "source_package": "pam",
+      "installed_version": "1.5.2-6",
+      "binary_packages": [
+        "libpam-doc",
+        "libpam-modules"
+      ],
+      "vuln_id": "CVE-2024-22365",
+      "advisory_ids": [
+        "DEBIAN-CVE-2024-22365"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "1.5.2-6+deb12u2",
+      "cvss_score": 5.5,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+      "kev": false
+    },
+    {
+      "id": "118e7a2f88cab610e47b843466c2a303a5e9eccff38454558cd6fcdd3880109b",
+      "ecosystem": "Debian:12",
+      "source_package": "pam",
+      "installed_version": "1.5.2-6",
+      "binary_packages": [
+        "libpam-doc",
+        "libpam-modules"
+      ],
+      "vuln_id": "CVE-2025-6020",
+      "advisory_ids": [
+        "DEBIAN-CVE-2025-6020"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "1.5.2-6+deb12u2",
+      "cvss_score": 7.8,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "kev": false
+    },
+    {
+      "id": "7b19fcb8e65636cb58223eba6d8447fcb1725e28eba527174973b8ce335bdaa5",
+      "ecosystem": "Debian:12",
+      "source_package": "pam",
+      "installed_version": "1.5.2-6",
+      "binary_packages": [
+        "libpam-doc",
+        "libpam-modules"
+      ],
+      "vuln_id": "CVE-2025-8941",
+      "advisory_ids": [
+        "DEBIAN-CVE-2025-8941"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 7.8,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "kev": false
+    },
+    {
+      "id": "f460a42c76bbde48ab3c9e75bdd70a9ad59ccdb4d53be698ef1c921940c30386",
+      "ecosystem": "Debian:12",
+      "source_package": "pam",
+      "installed_version": "1.5.2-6",
+      "binary_packages": [
+        "libpam-doc",
+        "libpam-modules"
+      ],
+      "vuln_id": "CVE-2026-54411",
+      "advisory_ids": [
+        "DEBIAN-CVE-2026-54411"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 8.2,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N/E:P/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:N/R:X/V:D/RE:X/U:X",
+      "kev": false
+    },
+    {
+      "id": "0614028e58f37e05b2c8364d8ac23cc08368d1f7008d5ef031599abb32b3af84",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2018-14628",
+      "advisory_ids": [
+        "DEBIAN-CVE-2018-14628"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "2:4.17.12+dfsg-0+deb12u3",
+      "cvss_score": 4.3,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+      "kev": false
+    },
+    {
+      "id": "f8e98d140b67fcdc9aa0800b4bf1d40b27cab4d28acd1efd319da383060d6aba",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2022-2127",
+      "advisory_ids": [
+        "DEBIAN-CVE-2022-2127",
+        "DSA-5477-1"
+      ],
+      "summary": "samba - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2:4.17.10+dfsg-0+deb12u1",
+      "cvss_score": 5.9,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "kev": false
+    },
+    {
+      "id": "d6d665bc60cfe08eb48c71b5eebf6e5c280a64c0ff358002caf2f501bde0e1b3",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2023-3347",
+      "advisory_ids": [
+        "DSA-5477-1"
+      ],
+      "summary": "samba - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2:4.17.10+dfsg-0+deb12u1",
+      "kev": false
+    },
+    {
+      "id": "e770a5e264a529dc2d11524c1fbce5d168f7d20921492e862ee10b9bb82bd03b",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2023-34966",
+      "advisory_ids": [
+        "DSA-5477-1"
+      ],
+      "summary": "samba - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2:4.17.10+dfsg-0+deb12u1",
+      "kev": false
+    },
+    {
+      "id": "7a773938e1addca9728f1cce462daf37d30f4f18c177fce87834e56e7777d1d5",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2023-34967",
+      "advisory_ids": [
+        "DSA-5477-1"
+      ],
+      "summary": "samba - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2:4.17.10+dfsg-0+deb12u1",
+      "kev": false
+    },
+    {
+      "id": "ae8f0eb717b38d9c2d63bd87d8104d3e3fc8ff3938ecab7aa3ff46e43b358bb9",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2023-34968",
+      "advisory_ids": [
+        "DSA-5477-1"
+      ],
+      "summary": "samba - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2:4.17.10+dfsg-0+deb12u1",
+      "kev": false
+    },
+    {
+      "id": "b6bc55db0b6871705b12e0489e993bd239139b5e25f242d00cbedf999ca8462a",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2023-3961",
+      "advisory_ids": [
+        "DSA-5525-1"
+      ],
+      "summary": "samba - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2:4.17.12+dfsg-0+deb12u1",
+      "kev": false
+    },
+    {
+      "id": "1cd4d30b3f2116ea9dc475237abd4b06a776e618b49b250aef4778a9e0822183",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2023-4091",
+      "advisory_ids": [
+        "DSA-5525-1"
+      ],
+      "summary": "samba - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2:4.17.12+dfsg-0+deb12u1",
+      "kev": false
+    },
+    {
+      "id": "19c02b9579047cde98d03223bac421b128817da2302ea99694a6e3f5aa1b9153",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2023-4154",
+      "advisory_ids": [
+        "DSA-5525-1"
+      ],
+      "summary": "samba - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2:4.17.12+dfsg-0+deb12u1",
+      "kev": false
+    },
+    {
+      "id": "af8f56a1b37e17f98a10f84b6c1876bfc42de69bd7eaa2951c9f961ee9984f9f",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2023-42669",
+      "advisory_ids": [
+        "DSA-5525-1"
+      ],
+      "summary": "samba - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2:4.17.12+dfsg-0+deb12u1",
+      "kev": false
+    },
+    {
+      "id": "55a6105943c1a4a797e93c1cb2460653b57704e3a96029cfe5944dd4a1e140b5",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2023-42670",
+      "advisory_ids": [
+        "DSA-5525-1"
+      ],
+      "summary": "samba - security update",
+      "fix_status": "fix-available",
+      "fixed_version": "2:4.17.12+dfsg-0+deb12u1",
+      "kev": false
+    },
+    {
+      "id": "6b3be58d075923cfe378c5221fb8265c48ae11ec19f04ba2e1730293113ee0af",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2026-15779",
+      "advisory_ids": [
+        "DEBIAN-CVE-2026-15779"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 6.1,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:H",
+      "kev": false
+    },
+    {
+      "id": "2e89096cdf6426e95f2db9752b61be5b8a4bd419ff040e6cc684b7e5f02f462a",
+      "ecosystem": "Debian:12",
+      "source_package": "samba",
+      "installed_version": "2:4.17.8+dfsg-2",
+      "binary_packages": [
+        "libldb2",
+        "samba"
+      ],
+      "vuln_id": "CVE-2026-58216",
+      "advisory_ids": [
+        "DEBIAN-CVE-2026-58216"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 5.3,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:H",
+      "kev": false
+    },
+    {
+      "id": "f9a8aad470bc8d050248cb9ff69e220ed21607b374f237da31a86bba7aa4102c",
+      "ecosystem": "Debian:12",
+      "source_package": "util-linux",
+      "installed_version": "2.38.1-5+deb12u1",
+      "binary_packages": [
+        "bsdutils",
+        "util-linux"
+      ],
+      "vuln_id": "CVE-2022-0563",
+      "advisory_ids": [
+        "DEBIAN-CVE-2022-0563"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 5.5,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+      "severity_label": "unimportant",
+      "kev": false
+    },
+    {
+      "id": "af634e380563bab9b076a4699b3e42b17771d9ecae7c9a2aa8bd25af62366349",
+      "ecosystem": "Debian:12",
+      "source_package": "util-linux",
+      "installed_version": "2.38.1-5+deb12u1",
+      "binary_packages": [
+        "bsdutils",
+        "util-linux"
+      ],
+      "vuln_id": "CVE-2025-14104",
+      "advisory_ids": [
+        "DEBIAN-CVE-2025-14104"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 6.1,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H",
+      "severity_label": "unimportant",
+      "kev": false
+    },
+    {
+      "id": "836d58a0a2278ded40fef74d2e9de1fcbe65420f20f742db29b440bbed12738b",
+      "ecosystem": "Debian:12",
+      "source_package": "util-linux",
+      "installed_version": "2.38.1-5+deb12u1",
+      "binary_packages": [
+        "bsdutils",
+        "util-linux"
+      ],
+      "vuln_id": "CVE-2026-13595",
+      "advisory_ids": [
+        "DEBIAN-CVE-2026-13595"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 5.3,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:H",
+      "kev": false
+    },
+    {
+      "id": "8529a92938e1669dd01accc1dc491ef310dfbae8ab0ab3eb85bbe383e5fcdab6",
+      "ecosystem": "Debian:12",
+      "source_package": "util-linux",
+      "installed_version": "2.38.1-5+deb12u1",
+      "binary_packages": [
+        "bsdutils",
+        "util-linux"
+      ],
+      "vuln_id": "CVE-2026-27456",
+      "advisory_ids": [
+        "DEBIAN-CVE-2026-27456"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 4.7,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
+      "kev": false
+    }
+  ]
+}

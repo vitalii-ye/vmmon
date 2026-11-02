@@ -1,0 +1,1040 @@
+{
+  "hostname": "golden-ubuntu",
+  "ecosystem": "Ubuntu:24.04:LTS",
+  "scanned_at": "2026-11-02T15:00:00Z",
+  "db_synced_at": "2026-11-02T12:00:00Z",
+  "db_age_seconds": 10800,
+  "reboot_required": true,
+  "packages_count": 9,
+  "counts": {
+    "total": 54,
+    "kev": 0,
+    "fix_available": 49,
+    "no_fix_yet": 5
+  },
+  "findings": [
+    {
+      "id": "2173f972a89c445aa51b7384a74cc7ab31fce2e5050dcb6d16ed66e5c94b25c9",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2012-4542",
+      "advisory_ids": [
+        "UBUNTU-CVE-2012-4542"
+      ],
+      "fix_status": "no-fix-yet",
+      "severity_label": "low",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "6f8e18c0676221c14034b042282beb3dd3c6acada05a9bff9f20e49fe9447571",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2013-7445",
+      "advisory_ids": [
+        "UBUNTU-CVE-2013-7445"
+      ],
+      "fix_status": "no-fix-yet",
+      "severity_label": "medium",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "92dc2923f62d871e22de52e6b89543fa8cea04834301a51c2278612bbeaed896",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2022-0480",
+      "advisory_ids": [
+        "UBUNTU-CVE-2022-0480"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 6.8,
+      "cvss_vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+      "severity_label": "medium",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "a3fde4b7eb0b3968bf3e9fd1cddeeb5cd946b9f42cb430f28718bb884cf85db0",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2022-49034",
+      "advisory_ids": [
+        "UBUNTU-CVE-2022-49034"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-58.60",
+      "cvss_score": 5.5,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+      "severity_label": "low",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "7d77a304b5df38d8b27916cc33695a59e08fbea871635ce19f1a4a6dfb42c5ef",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2022-49940",
+      "advisory_ids": [
+        "UBUNTU-CVE-2022-49940"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 6.8,
+      "cvss_vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+      "severity_label": "medium",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "a7221f66ef955e1cea2e13bb317af997f6257840b3edf7bf9e9a61f147233588",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2023-20585",
+      "advisory_ids": [
+        "UBUNTU-CVE-2023-20585"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-147.147",
+      "cvss_score": 5.6,
+      "cvss_vector": "CVSS:4.0/AV:L/AC:H/AT:N/PR:H/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N",
+      "severity_label": "low",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "00e898798f86fd506c6cd635e2d857e164b847f94e374bf08549abdd16b1f456",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2023-52917",
+      "advisory_ids": [
+        "UBUNTU-CVE-2023-52917"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-54.56",
+      "cvss_score": 5.5,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+      "severity_label": "medium",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "a105ee06655c2fbe1ac41bde5191f979cf0c9cb0e5eb696cdd98900d0d363b78",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2023-52918",
+      "advisory_ids": [
+        "UBUNTU-CVE-2023-52918"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-50.51",
+      "cvss_score": 5.5,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+      "severity_label": "low",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "5380e242db252a0fb5e5a5275eff420b490de0fc3ee67916290e3e3886ba213f",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2024-43882",
+      "advisory_ids": [
+        "USN-7120-1"
+      ],
+      "summary": "linux, linux-aws, linux-gcp, linux-gcp-6.8, linux-gke, linux-hwe-6.8, linux-ibm, linux-nvidia, linux-nvidia-6.8, linux-nvidia-lowlatency, linux-oem-6.8, linux-oracle, linux-raspi vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-49.49",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "fc13c9e9488dd2508910dae43563d416c31c4384e37575c6bb9b70318ea58040",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2024-45016",
+      "advisory_ids": [
+        "USN-7071-1"
+      ],
+      "summary": "linux, linux-aws, linux-aws-6.8, linux-gcp, linux-gcp-6.8, linux-hwe-6.8, linux-ibm, linux-lowlatency, linux-lowlatency-hwe-6.8, linux-nvidia, linux-nvidia-6.8, linux-nvidia-lowlatency, linux-oem-6.8, linux-oracle, linux-oracle-6.8, linux-raspi vulnerability",
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-47.47",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "b7a99f86ef411f911e8f2932b5d66be19443716b4d24b3a7dd613cde503e75f2",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2024-46800",
+      "advisory_ids": [
+        "USN-7120-1"
+      ],
+      "summary": "linux, linux-aws, linux-gcp, linux-gcp-6.8, linux-gke, linux-hwe-6.8, linux-ibm, linux-nvidia, linux-nvidia-6.8, linux-nvidia-lowlatency, linux-oem-6.8, linux-oracle, linux-raspi vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-49.49",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "b478d3e61cd1c8af3ae32ee513f7a4d0c865c6ecf422cad1eb5c25b307ce9f3b",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2024-53104",
+      "advisory_ids": [
+        "USN-7324-1"
+      ],
+      "summary": "linux, linux-lowlatency, linux-lowlatency-hwe-6.8 vulnerability",
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-55.57",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "4bd5eebbd3bcba5d765e9d897ccc6cf1346d8e66c0c48b06bc6f7fcec427afc7",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2025-38561",
+      "advisory_ids": [
+        "USN-8015-1"
+      ],
+      "summary": "linux, linux-gke, linux-gkeop, linux-hwe-6.8, linux-oracle, linux-oracle-6.8, linux-raspi vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-94.96",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "c046a6cba202879e404ad667f68a968fdd0bdecaccf3367a4d88596912278ed3",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2025-39698",
+      "advisory_ids": [
+        "USN-8015-1"
+      ],
+      "summary": "linux, linux-gke, linux-gkeop, linux-hwe-6.8, linux-oracle, linux-oracle-6.8, linux-raspi vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-94.96",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "da69a68e47080de53aeffa04dff7f72734c223752486e35eeb568e8b9edb86b2",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "CVE-2025-40019",
+      "advisory_ids": [
+        "USN-8015-1"
+      ],
+      "summary": "linux, linux-gke, linux-gkeop, linux-hwe-6.8, linux-oracle, linux-oracle-6.8, linux-raspi vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-94.96",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "eca423173bbd7b0eea0c77da8a3515c227844527d5b55ccb5f6ad9f0be18815a",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "linux",
+      "installed_version": "6.8.0-45.45",
+      "binary_packages": [
+        "linux-image-6.8.0-45-generic",
+        "linux-modules-6.8.0-45-generic"
+      ],
+      "vuln_id": "USN-7758-1",
+      "advisory_ids": [
+        "USN-7758-1"
+      ],
+      "summary": "linux, linux-aws, linux-gcp, linux-gke, linux-gkeop, linux-hwe-6.8, linux-lowlatency, linux-lowlatency-hwe-6.8, linux-oracle vulnerability",
+      "fix_status": "fix-available",
+      "fixed_version": "6.8.0-83.83",
+      "kev": false,
+      "kernel": true
+    },
+    {
+      "id": "a5d05c5d76f6be744bba89fee352ac548a5991552b22ab05f5121b9109bb4a13",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2024-13176",
+      "advisory_ids": [
+        "UBUNTU-CVE-2024-13176",
+        "USN-7278-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.5",
+      "cvss_score": 4.1,
+      "cvss_vector": "CVSS:3.1/AV:P/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L",
+      "severity_label": "low",
+      "kev": false
+    },
+    {
+      "id": "d6440f82155f82fb5ac8efc60caaba1083b60d9c0e71460e62b280535d6ed9f5",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2024-2511",
+      "advisory_ids": [
+        "UBUNTU-CVE-2024-2511",
+        "USN-6937-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.2",
+      "cvss_score": 5.9,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "severity_label": "low",
+      "kev": false
+    },
+    {
+      "id": "d61259ed1cbe56ea90e3255a03e936c50e58236668891f476fa98a53bb81e5c8",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2024-4603",
+      "advisory_ids": [
+        "USN-6937-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.2",
+      "kev": false
+    },
+    {
+      "id": "eae54339495a4953feb217f9235125844f53ba20efb8c75a71d4da4688736759",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2024-4741",
+      "advisory_ids": [
+        "USN-6937-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.2",
+      "kev": false
+    },
+    {
+      "id": "58bcfcf1eec636e6fa028cabd26caa68ca681437bc751741ef8c69403eee8dd6",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2024-5535",
+      "advisory_ids": [
+        "USN-6937-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.2",
+      "kev": false
+    },
+    {
+      "id": "0ba0611683798352c2355c65a1b0c06ed3302edb7b25ccc46b2d78dc1bae4818",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2024-6119",
+      "advisory_ids": [
+        "USN-6986-1"
+      ],
+      "summary": "openssl vulnerability",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.4",
+      "kev": false
+    },
+    {
+      "id": "f04421170530b858a42d50be54608455c9e2639f7687e9efd14c8ab0e4fef1ab",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2024-9143",
+      "advisory_ids": [
+        "USN-7278-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.5",
+      "kev": false
+    },
+    {
+      "id": "87b45f7d5eb2bfb972aef2f6a94498aa22bdc6c4d2cba44df76d6142c57f0ce3",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-2673",
+      "advisory_ids": [
+        "USN-8155-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.9",
+      "kev": false
+    },
+    {
+      "id": "dbc3ee83478aa59b0be64e3a18278d3807b0a95524fc310c9ae2b30ba25fd44f",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-28387",
+      "advisory_ids": [
+        "USN-8155-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.9",
+      "kev": false
+    },
+    {
+      "id": "f1193ea51f4fedb814f9071dd74cdb026cfecb6727a10782c211dfb9d5c024a9",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-28388",
+      "advisory_ids": [
+        "USN-8155-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.9",
+      "kev": false
+    },
+    {
+      "id": "517ae23e2fcbccc98a7f65b8339b9c634ec877eb28db990abb78e6581e3b1c79",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-28389",
+      "advisory_ids": [
+        "USN-8155-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.9",
+      "kev": false
+    },
+    {
+      "id": "82902293019c555931a8f75c96e6732cbc45ab1ece97ce13e93427d797af167d",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-28390",
+      "advisory_ids": [
+        "USN-8155-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.9",
+      "kev": false
+    },
+    {
+      "id": "a7d40e6ea8ceed22c355a92f706819ca750ca601d583bc5a3634d00cda583e37",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-31789",
+      "advisory_ids": [
+        "USN-8155-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.9",
+      "kev": false
+    },
+    {
+      "id": "c751446668c18386558bd13fd2e0a62071feaa8d2db5ec3c9f5ef3dcd635f186",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-31790",
+      "advisory_ids": [
+        "USN-8155-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.9",
+      "kev": false
+    },
+    {
+      "id": "f22f0703a6c2398c0b6a7848dc61249f642655b9b373bbc7a6231b4240a1127e",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-34180",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "3848332b26ebd2b46c6be58aef2a098b07f662147152b145dca3b7e09b938a2f",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-34181",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "34f671fda3dae09692f1a425982b201aa12a39ff71ea4622781a17dfa66b30de",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-34182",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "db35557f4f31c8fcde3f487d20255fddef5be18ec3c8af62a4b1cdca8ce9ab4c",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-34183",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "ca31a834c9cb4ece4bd6bc179ac0b6d94e97a4250df700457ab25a66ee8be9d7",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-42764",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "f7dd090577f8d4d3c929b5eb0e888e15f6b25b79dec0d051856ef5a2d8979c41",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-42766",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "3de0a9c26baff3c9bb270cd29fbf62bc903187d9488848afd986338bf3cee1ff",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-42767",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "8f0c4af5dee67b6c8dc5c1cbe506dad942a337bb784277a5f50a116ebf79eadd",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-42768",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "2af8d08e11219aadfdf4d4fbbde9fdd3e26368adca075a395483ddcaf1e8e023",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-42769",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "24c058aadab71df03ff9173ccf403d434d9da354b93003d87a5cb6d7f7fa5382",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-42770",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "ba764a143357fafa5a8354ac9ffa8f8474ef1030bf89674a00a80b8434ad1b47",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-45445",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "66b60be891cd9cea2c4623659b88949b18113fed76e81b536ee3e2b7b2a3354e",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-45446",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "15c6ad8564a832d5dd8ed89edbc25f80e18019da52a89919c3a3dbf9a9467a7e",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-45447",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "fa64adbded7beee37c50a9a4a27bbfbd4c29d2873c03cf82424ba15267ee3921",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-7383",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "fc686873ed733db2b25394d598d724bb0ad562da95a502ef290c31ec8b61cfc2",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "openssl",
+      "installed_version": "3.0.13-0ubuntu3.1",
+      "binary_packages": [
+        "libssl3t64",
+        "openssl"
+      ],
+      "vuln_id": "CVE-2026-9076",
+      "advisory_ids": [
+        "USN-8414-1"
+      ],
+      "summary": "openssl vulnerabilities",
+      "fix_status": "fix-available",
+      "fixed_version": "3.0.13-0ubuntu3.11",
+      "kev": false
+    },
+    {
+      "id": "1c77f3aa772f54b16786bb91c754a65fca7757843d58cd84c9d85d405fe870cb",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "pam",
+      "installed_version": "1.5.3-5ubuntu5.1",
+      "binary_packages": [
+        "libpam0g"
+      ],
+      "vuln_id": "CVE-2024-10041",
+      "advisory_ids": [
+        "UBUNTU-CVE-2024-10041"
+      ],
+      "fix_status": "no-fix-yet",
+      "cvss_score": 4.7,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
+      "severity_label": "medium",
+      "kev": false
+    },
+    {
+      "id": "5f8fa6191e984028a665268a4928852a7011d3cd011eaa2273a085cb7f616edc",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "pam",
+      "installed_version": "1.5.3-5ubuntu5.1",
+      "binary_packages": [
+        "libpam0g"
+      ],
+      "vuln_id": "CVE-2024-10963",
+      "advisory_ids": [
+        "UBUNTU-CVE-2024-10963",
+        "USN-7761-1"
+      ],
+      "summary": "pam vulnerability",
+      "fix_status": "fix-available",
+      "fixed_version": "1.5.3-5ubuntu5.5",
+      "cvss_score": 7.4,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+      "severity_label": "medium",
+      "kev": false
+    },
+    {
+      "id": "b243495c92131253d6343c1107616b483bc268c1120918a182b787ea0850f9e9",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "pam",
+      "installed_version": "1.5.3-5ubuntu5.1",
+      "binary_packages": [
+        "libpam0g"
+      ],
+      "vuln_id": "CVE-2025-6020",
+      "advisory_ids": [
+        "UBUNTU-CVE-2025-6020",
+        "USN-7580-1"
+      ],
+      "summary": "pam vulnerability",
+      "fix_status": "fix-available",
+      "fixed_version": "1.5.3-5ubuntu5.4",
+      "cvss_score": 7.8,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "severity_label": "medium",
+      "kev": false
+    },
+    {
+      "id": "5a48821135b3954b70a5199de34b7156dfebee49901e2868038d4b4f93ac0401",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "pam",
+      "installed_version": "1.5.3-5ubuntu5.1",
+      "binary_packages": [
+        "libpam0g"
+      ],
+      "vuln_id": "CVE-2026-54411",
+      "advisory_ids": [
+        "UBUNTU-CVE-2026-54411"
+      ],
+      "fix_status": "fix-available",
+      "fixed_version": "1.5.3-5ubuntu5.6",
+      "cvss_score": 8.2,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N/E:P/AU:N/V:D",
+      "severity_label": "medium",
+      "kev": false
+    },
+    {
+      "id": "16b31bce718f4c44a6668c5b66aa6aa99ccffd770f0a29b43bb886e111d0df1c",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "pam",
+      "installed_version": "1.5.3-5ubuntu5.1",
+      "binary_packages": [
+        "libpam0g"
+      ],
+      "vuln_id": "USN-8688-1",
+      "advisory_ids": [
+        "USN-8688-1"
+      ],
+      "summary": "pam vulnerability",
+      "fix_status": "fix-available",
+      "fixed_version": "1.5.3-5ubuntu5.7",
+      "kev": false
+    },
+    {
+      "id": "9fcb2b758b0e3045c810df690720746d609b880c54f951ce3d9f3e0844f5579f",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "sed",
+      "installed_version": "4.9-2build1",
+      "binary_packages": [
+        "sed"
+      ],
+      "vuln_id": "CVE-2026-5958",
+      "advisory_ids": [
+        "UBUNTU-CVE-2026-5958",
+        "USN-8229-1"
+      ],
+      "summary": "sed vulnerability",
+      "fix_status": "fix-available",
+      "fixed_version": "4.9-2ubuntu0.24.04.1",
+      "cvss_score": 2.1,
+      "cvss_vector": "CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N",
+      "severity_label": "medium",
+      "kev": false
+    },
+    {
+      "id": "79317d0e5448c22e9dd0b701a5c57e31ce236f17bc736711b498cc0e2d0b0179",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "xz-utils",
+      "installed_version": "5.6.1+really5.4.5-1",
+      "binary_packages": [
+        "liblzma5",
+        "xz-utils"
+      ],
+      "vuln_id": "CVE-2025-31115",
+      "advisory_ids": [
+        "UBUNTU-CVE-2025-31115",
+        "USN-7414-1"
+      ],
+      "summary": "xz-utils vulnerability",
+      "fix_status": "fix-available",
+      "fixed_version": "5.6.1+really5.4.5-1ubuntu0.2",
+      "cvss_score": 8.7,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+      "severity_label": "medium",
+      "kev": false,
+      "epss": 0.005,
+      "epss_percentile": 0.4
+    },
+    {
+      "id": "e40ce729f3c3101b0f9c8b31f1a32349bf53cc7236fb3e457f215b5a89117fc8",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "xz-utils",
+      "installed_version": "5.6.1+really5.4.5-1",
+      "binary_packages": [
+        "liblzma5",
+        "xz-utils"
+      ],
+      "vuln_id": "CVE-2026-34743",
+      "advisory_ids": [
+        "UBUNTU-CVE-2026-34743",
+        "USN-8362-1"
+      ],
+      "summary": "xz-utils vulnerability",
+      "fix_status": "fix-available",
+      "fixed_version": "5.6.1+really5.4.5-1ubuntu0.3",
+      "cvss_score": 6.3,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N/E:U",
+      "severity_label": "low",
+      "kev": false
+    },
+    {
+      "id": "2d164f7cae993f7ff006f212685cef4ebcfd91c6d069a73101eeb2b6181ab6f5",
+      "ecosystem": "Ubuntu:24.04:LTS",
+      "source_package": "xz-utils",
+      "installed_version": "5.6.1+really5.4.5-1",
+      "binary_packages": [
+        "liblzma5",
+        "xz-utils"
+      ],
+      "vuln_id": "USN-8945-1",
+      "advisory_ids": [
+        "USN-8945-1"
+      ],
+      "summary": "xz-utils vulnerability",
+      "fix_status": "fix-available",
+      "fixed_version": "5.6.1+really5.4.5-1ubuntu0.4",
+      "kev": false
+    }
+  ]
+}

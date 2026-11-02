@@ -203,16 +203,28 @@ type reader struct {
 
 // RecordsFor implements Reader.
 func (r reader) RecordsFor(sourcePackage string) ([]Record, error) {
+	var out []Record
+	err := r.EachRecord(sourcePackage, func(rec Record) error {
+		out = append(out, rec)
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// EachRecord implements Reader.
+func (r reader) EachRecord(sourcePackage string, fn func(rec Record) error) error {
 	if sourcePackage == "" {
-		return nil, nil
+		return nil
 	}
 	links := r.tx.Bucket(bucketPkg).Bucket([]byte(sourcePackage))
 	if links == nil {
-		return nil, nil
+		return nil
 	}
 	records := r.tx.Bucket(bucketRecords)
-	var out []Record
-	err := links.ForEach(func(id, _ []byte) error {
+	return links.ForEach(func(id, _ []byte) error {
 		value := records.Get(id)
 		if value == nil {
 			return fmt.Errorf("index: %s links to missing record %s", sourcePackage, id)
@@ -228,12 +240,11 @@ func (r reader) RecordsFor(sourcePackage string) ([]Record, error) {
 		if r.s.filter(&rec) {
 			rec.Affected = slices.DeleteFunc(rec.Affected, func(a Affected) bool { return a.Package.Name != sourcePackage })
 			if len(rec.Affected) > 0 {
-				out = append(out, rec)
+				return fn(rec)
 			}
 		}
 		return nil
 	})
-	return out, err
 }
 
 // Status describes the local state of one ecosystem's index.

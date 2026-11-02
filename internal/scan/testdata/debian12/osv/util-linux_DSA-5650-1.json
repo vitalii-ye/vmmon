@@ -1,0 +1,33 @@
+{
+  "id": "DSA-5650-1",
+  "modified": "2026-03-09T02:08:30.371343Z",
+  "summary": "util-linux - security update",
+  "upstream": [
+    "CVE-2024-28085",
+    "DEBIAN-CVE-2024-28085"
+  ],
+  "affected": [
+    {
+      "package": {
+        "name": "util-linux",
+        "ecosystem": "Debian:12"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "2.38.1-5+deb12u1"
+            }
+          ]
+        }
+      ],
+      "versions": [
+        "2.38.1-5"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "DSA-5460-1",
+  "modified": "2025-05-26T07:02:55.204572Z",
+  "summary": "curl - security update",
+  "affected": [
+    {
+      "package": {
+        "name": "curl",
+        "ecosystem": "Debian:12"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "7.88.1-10+deb12u1"
+            }
+          ]
+        }
+      ],
+      "versions": [
+        "7.88.1-10",
+        "7.88.1-10+deb12u1~bpo11+1"
+      ]
+    }
+  ]
+}
