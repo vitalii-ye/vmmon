@@ -1,0 +1,21 @@
+#!/bin/sh
+# "remove" keeps settings and data, as dpkg expects, so a reinstall resumes without
+# re-pairing or re-downloading the DB. "purge" is the explicit request to delete them.
+set -e
+
+case "$1" in
+remove | purge)
+	if [ -d /run/systemd/system ]; then
+		systemctl daemon-reload || true
+	fi
+	;;
+esac
+
+if [ "$1" = "purge" ]; then
+	# The bot token, the settings, the DB and the record of reported findings. With
+	# DynamicUser the data is in /var/lib/private/vmmon and /var/lib/vmmon is a
+	# symlink to it, or a plain directory if the service has never started.
+	rm -rf /etc/vmmon /var/lib/private/vmmon /var/lib/vmmon
+fi
+
+exit 0

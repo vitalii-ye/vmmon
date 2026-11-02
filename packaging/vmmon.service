@@ -1,0 +1,80 @@
+# vmmon: read-only host vulnerability scanner with outbound-only network use.
+#
+# It reads /var/lib/dpkg/status, /etc/os-release, /etc/vmmon/config.yaml,
+# /run/reboot-required and /proc, all world-readable and all visible under this
+# sandbox. It writes only to its state directory, including the temp files for
+# DB downloads, so PrivateTmp costs nothing and /tmp's size does not matter.
+#
+# To customise, use a drop-in (`systemctl edit vmmon`); install.sh and package
+# upgrades replace this file. A custom state_dir needs ReadWritePaths= there.
+
+[Unit]
+Description=vmmon host vulnerability monitor
+Documentation=https://github.com/vitalii-ye/vmmon
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+# Type=exec makes `systemctl enable --now` fail if the binary cannot be executed.
+Type=exec
+ExecStart=/usr/local/bin/vmmon daemon
+Restart=on-failure
+# Well under the default start limit (5 starts in 10 s), so a long network or
+# config problem keeps retrying rather than leaving the unit dead for good.
+RestartSec=30s
+
+# No "-" prefix: PID 1 reads this before dropping privileges, `vmmon setup`
+# writes it before starting the unit, and the package never auto-starts. Starting
+# the unit before setup should fail visibly, not run a monitor that cannot alert.
+EnvironmentFile=/etc/vmmon/secrets.env
+
+# State lives in /var/lib/private/vmmon, with /var/lib/vmmon a symlink to it. That
+# parent is mode 0700, which is why `vmmon scan` and `vmmon status` need sudo.
+# systemd moves a plain /var/lib/vmmon left by an earlier `sudo vmmon db sync`.
+DynamicUser=yes
+StateDirectory=vmmon
+
+# A guard against runaway growth, not a budget. A full Ubuntu sync peaks near
+# 250 MB RSS, and the cgroup also counts page cache from its 806 MB download and
+# the bbolt mmap. The kernel reclaims that cache before it kills anything, so 1G
+# is about 4x the real need. There is no MemoryHigh: throttling would only slow
+# a sync. Disk is not limited here: a full Ubuntu sync needs about 1.3 GB free.
+MemoryMax=1G
+
+# Filesystem
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+
+# Privileges
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictSUIDSGID=yes
+
+# Kernel and host. ProtectProc and ProcSubset are left out: /proc must stay readable.
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+
+# Process. Go needs no writable-executable memory.
+RestrictNamespaces=yes
+RestrictRealtime=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+
+# Network: outbound HTTPS and DNS. vmmon opens no listening socket.
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+# Syscalls. EPERM rather than SIGSYS, so a syscall a newer Go runtime tries is a
+# failure it can handle, not a crash.
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

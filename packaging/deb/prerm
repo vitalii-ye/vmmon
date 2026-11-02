@@ -1,0 +1,15 @@
+#!/bin/sh
+# Only a real removal stops the service. An upgrade calls this with "upgrade" and
+# keeps it running until postinst restarts it on the new binary.
+set -e
+
+case "$1" in
+remove)
+	if [ -d /run/systemd/system ]; then
+		systemctl stop vmmon.service || true
+		systemctl disable vmmon.service || true
+	fi
+	;;
+esac
+
+exit 0

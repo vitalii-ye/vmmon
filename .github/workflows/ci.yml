@@ -45,3 +45,91 @@ jobs:
         with:
           name: vmmon-${{ matrix.arch }}
           path: vmmon-${{ matrix.arch }}
+
+  packaging-scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint shell scripts
+        run: shellcheck -s sh packaging/*.sh packaging/deb/* testdata/integration/*.sh
+      - name: Test install.sh
+        run: sh packaging/test_install.sh
+      - name: Test the .deb maintainer scripts
+        run: sh packaging/test_deb_scripts.sh
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Check the goreleaser config
+        uses: goreleaser/goreleaser-action@v7
+        with:
+          version: "~> v2"
+          args: check
+      - name: Build a snapshot release
+        uses: goreleaser/goreleaser-action@v7
+        with:
+          version: "~> v2"
+          args: release --snapshot --clean --skip=publish
+      - name: Check the tarball has what install.sh extracts
+        run: |
+          for arch in amd64 arm64; do
+            members="$(tar -tzf "dist/vmmon_linux_$arch.tar.gz" | LC_ALL=C sort | tr '\n' ' ')"
+            test "$members" = "LICENSE README.md vmmon vmmon.service "
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: snapshot
+          path: |
+            dist/*.tar.gz
+            dist/*.deb
+            dist/checksums.txt
+          if-no-files-found: error
+
+  # The release artifacts inside each supported distro. amd64 only: the runners are.
+  integration:
+    needs: package
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: debian:12
+            ecosystem: Debian:12
+          - image: debian:13
+            ecosystem: Debian:13
+          - image: ubuntu:22.04
+            ecosystem: Ubuntu:22.04:LTS
+          - image: ubuntu:24.04
+            ecosystem: Ubuntu:24.04:LTS
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - uses: actions/download-artifact@v4
+        with:
+          name: snapshot
+          path: dist
+      - name: Extract the binary from the release tarball
+        run: |
+          mkdir -p it
+          tar -xzf dist/vmmon_linux_amd64.tar.gz -C it vmmon
+          file it/vmmon | grep -q 'statically linked'
+      - name: Build the fixture databases
+        env:
+          VMMON_IT_STATE: ${{ runner.temp }}/vmmon-state
+        run: go test ./testdata/integration -run TestBuildFixtures -count=1
+      - name: Run version, inventory and scan in the container
+        run: sh testdata/integration/run.sh "${{ matrix.image }}" "${{ matrix.ecosystem }}" it/vmmon "${{ runner.temp }}/vmmon-state"
+      - name: Install, remove and purge the .deb in the container
+        run: |
+          docker run --rm \
+            -v "$PWD/dist/vmmon_linux_amd64.deb:/vmmon.deb:ro" \
+            -v "$PWD/testdata/integration/deb.sh:/deb.sh:ro" \
+            "${{ matrix.image }}" sh /deb.sh /vmmon.deb

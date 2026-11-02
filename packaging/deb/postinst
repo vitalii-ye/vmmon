@@ -1,0 +1,22 @@
+#!/bin/sh
+# $1 is "configure" and $2 the previously configured version, empty on a fresh
+# install. A fresh install never starts the service: it has no token yet, so
+# `vmmon setup` starts it. An upgrade restarts it only if it was running.
+set -e
+
+case "$1" in
+configure)
+	if [ -d /run/systemd/system ]; then
+		systemctl daemon-reload || true
+		if [ -n "${2:-}" ]; then
+			systemctl try-restart vmmon.service || true
+		fi
+	fi
+	if [ -z "${2:-}" ]; then
+		echo "vmmon is installed. Next step, to pair Telegram and start the service:"
+		echo "  sudo vmmon setup"
+	fi
+	;;
+esac
+
+exit 0

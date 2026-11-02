@@ -1,0 +1,126 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+version: 2
+
+project_name: vmmon
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+builds:
+  - id: vmmon
+    main: ./cmd/vmmon
+    binary: vmmon
+    env:
+      - CGO_ENABLED=0
+    goos: [linux]
+    goarch: [amd64, arm64]
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w
+      - -X github.com/vitalii-ye/vmmon/internal/buildinfo.Version={{ .Version }}
+      - -X github.com/vitalii-ye/vmmon/internal/buildinfo.Commit={{ .ShortCommit }}
+      - -X github.com/vitalii-ye/vmmon/internal/buildinfo.Date={{ .CommitDate }}
+    mod_timestamp: "{{ .CommitTimestamp }}"
+
+# Artifact names carry no version, so that releases/latest/download/<name> is a
+# stable URL for install.sh and the README, with no API call to find the version.
+archives:
+  - id: tarball
+    ids: [vmmon]
+    formats: [tar.gz]
+    name_template: "vmmon_{{ .Os }}_{{ .Arch }}"
+    # install.sh extracts these exact member names from the top level.
+    files:
+      - LICENSE
+      - README.md
+      - src: packaging/vmmon.service
+        strip_parent: true
+
+checksum:
+  name_template: checksums.txt
+  algorithm: sha256
+
+nfpms:
+  - id: deb
+    ids: [vmmon]
+    package_name: vmmon
+    file_name_template: "vmmon_{{ .Os }}_{{ .Arch }}"
+    formats: [deb]
+    vendor: Vitalii Yeromin
+    homepage: https://github.com/vitalii-ye/vmmon
+    maintainer: Vitalii Yeromin <vitalii-ye@users.noreply.github.com>
+    description: Host vulnerability monitor for Debian and Ubuntu VMs, with Telegram alerts.
+    license: Apache-2.0
+    section: admin
+    priority: optional
+    # The plan's on-disk layout, the same as install.sh, so the unit's ExecStart
+    # holds for both. Debian policy reserves /usr/local for the admin, so lintian
+    # will object; this package is not aimed at the Debian archive.
+    bindir: /usr/local/bin
+    # No hard dependencies: it is a static binary. A TLS trust store is what it
+    # needs at runtime, because Go reads the system's CA bundle.
+    recommends:
+      - systemd
+      - ca-certificates
+    contents:
+      - src: packaging/vmmon.service
+        # In systemd's search path on Debian 12, 13 and Ubuntu 22.04, 24.04.
+        dst: /usr/lib/systemd/system/vmmon.service
+        file_info:
+          mode: 0644
+      - src: LICENSE
+        dst: /usr/share/doc/vmmon/copyright
+        file_info:
+          mode: 0644
+      - src: README.md
+        dst: /usr/share/doc/vmmon/README.md
+        file_info:
+          mode: 0644
+    scripts:
+      postinstall: packaging/deb/postinst
+      preremove: packaging/deb/prerm
+      postremove: packaging/deb/postrm
+
+homebrew_casks:
+  - name: vmmon
+    ids: [tarball]
+    binaries: [vmmon]
+    repository:
+      owner: vitalii-ye
+      name: homebrew-tap
+      branch: main
+      token: '{{ index .Env "HOMEBREW_TAP_TOKEN" }}'
+    homepage: https://github.com/vitalii-ye/vmmon
+    description: Host vulnerability monitor for Debian and Ubuntu VMs, with Telegram alerts
+    license: Apache-2.0
+    # Without the token a release simply skips the tap, so it cannot fail or push
+    # anywhere until the tap repo and token exist. "auto" also skips prereleases.
+    skip_upload: '{{ if index .Env "HOMEBREW_TAP_TOKEN" }}auto{{ else }}true{{ end }}'
+    # The service cannot run from the Homebrew prefix: it sits under /home, which
+    # the unit's ProtectHome hides, and sudo's PATH does not include it. So the
+    # binary is copied, which also means `brew upgrade` needs this repeated.
+    caveats: |
+      Homebrew cannot run a root wizard or install a system service. To run the
+      vmmon service, copy the binary and unit into place, then run setup:
+
+        sudo install -m 0755 "$(brew --prefix)/bin/vmmon" /usr/local/bin/vmmon
+        sudo install -m 0644 "$(brew --prefix)/Caskroom/vmmon/{{ .Version }}/vmmon.service" /etc/systemd/system/vmmon.service
+        sudo systemctl daemon-reload
+        sudo vmmon setup
+
+      Repeat the first three commands after each `brew upgrade --cask vmmon`.
+
+changelog:
+  use: git
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+release:
+  github:
+    owner: vitalii-ye
+    name: vmmon
+  prerelease: auto
