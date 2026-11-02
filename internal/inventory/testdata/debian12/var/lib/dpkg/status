@@ -1,0 +1,168 @@
+Package: base-files
+Status: install ok installed
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Version: 12.4+deb12u15
+Description: base-files fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: bash
+Status: install ok installed
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Source: bash (5.2.15-2)
+Version: 5.2.15-2+b13
+Description: bash fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: bsdutils
+Status: install ok installed
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Source: util-linux (2.38.1-5+deb12u3)
+Version: 1:2.38.1-5+deb12u3
+Description: bsdutils fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: libc6
+Status: install ok installed
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Multi-Arch: same
+Source: glibc
+Version: 2.36-9+deb12u14
+Description: libc6 fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: libc6
+Status: install ok installed
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: i386
+Multi-Arch: same
+Source: glibc
+Version: 2.36-9+deb12u14
+Description: libc6 fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: linux-headers-6.1.0-28-amd64
+Status: install ok installed
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Source: linux
+Version: 6.1.119-1
+Description: linux-headers-6.1.0-28-amd64 fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: linux-image-6.1.0-20-amd64
+Status: deinstall ok config-files
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Source: linux-signed-amd64 (6.1.85+1)
+Version: 6.1.85-1
+Description: linux-image-6.1.0-20-amd64 fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: linux-image-6.1.0-26-amd64
+Status: install ok installed
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Source: linux-signed-amd64 (6.1.112+1)
+Version: 6.1.112-1
+Description: linux-image-6.1.0-26-amd64 fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: linux-image-6.1.0-28-amd64
+Status: install ok installed
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Source: linux-signed-amd64 (6.1.119+1)
+Version: 6.1.119-1
+Description: linux-image-6.1.0-28-amd64 fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: linux-image-amd64
+Status: install ok installed
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Source: linux-signed-amd64 (6.1.119+1)
+Version: 6.1.119-1
+Description: linux-image-amd64 fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: openssl
+Status: deinstall ok config-files
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Version: 3.0.20-1~deb12u2
+Description: openssl fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: sudo
+Status: hold ok installed
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Version: 1.9.13p3-1+deb12u4
+Description: sudo fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: tzdata
+Status: install ok installed
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: all
+Multi-Arch: foreign
+Version: 2026b-0+deb12u1
+Description: tzdata fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
+Package: zlib1g
+Status: install ok unpacked
+Priority: optional
+Section: misc
+Installed-Size: 1024
+Maintainer: Fixture Maintainers <fixture@example.org>
+Architecture: amd64
+Multi-Arch: same
+Source: zlib
+Version: 1:1.2.13.dfsg-1
+Description: zlib1g fixture
+ Hand-curated stanza; name, version and source are from the real archive.
+
