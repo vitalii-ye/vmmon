@@ -91,10 +91,12 @@ jobs:
             dist/checksums.txt
           if-no-files-found: error
 
-  # The release artifacts inside each supported distro. amd64 only: the runners are.
+  # The release artifacts inside each supported distro. amd64 only, as the runners are: ARCH below.
   integration:
     needs: package
     runs-on: ubuntu-latest
+    env:
+      ARCH: amd64
     strategy:
       fail-fast: false
       matrix:
@@ -119,17 +121,17 @@ jobs:
       - name: Extract the binary from the release tarball
         run: |
           mkdir -p it
-          tar -xzf dist/vmmon_linux_amd64.tar.gz -C it vmmon
+          tar -xzf "dist/vmmon_linux_$ARCH.tar.gz" -C it vmmon
           file it/vmmon | grep -q 'statically linked'
       - name: Build the fixture databases
         env:
           VMMON_IT_STATE: ${{ runner.temp }}/vmmon-state
         run: go test ./testdata/integration -run TestBuildFixtures -count=1
       - name: Run version, inventory and scan in the container
-        run: sh testdata/integration/run.sh "${{ matrix.image }}" "${{ matrix.ecosystem }}" it/vmmon "${{ runner.temp }}/vmmon-state"
+        run: sh testdata/integration/run.sh "${{ matrix.image }}" "${{ matrix.ecosystem }}" it/vmmon "${{ runner.temp }}/vmmon-state" "$ARCH"
       - name: Install, remove and purge the .deb in the container
         run: |
-          docker run --rm \
-            -v "$PWD/dist/vmmon_linux_amd64.deb:/vmmon.deb:ro" \
+          docker run --rm --platform "linux/$ARCH" \
+            -v "$PWD/dist/vmmon_linux_$ARCH.deb:/vmmon.deb:ro" \
             -v "$PWD/testdata/integration/deb.sh:/deb.sh:ro" \
             "${{ matrix.image }}" sh /deb.sh /vmmon.deb

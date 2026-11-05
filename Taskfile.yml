@@ -30,17 +30,20 @@ tasks:
       - sh packaging/test_install.sh
       - sh packaging/test_deb_scripts.sh
   test:integration:
-    desc: Run a snapshot's binary and .deb in each supported distro (needs Docker and a snapshot built on amd64 Linux)
+    desc: Run a snapshot's binary and .deb in each supported distro (needs Docker and `task snapshot`; ARCH=amd64|arm64 overrides the host's arch)
     env: { VMMON_IT_STATE: "{{.ROOT_DIR}}/dist/it-state" }
     cmds:
       - go test ./testdata/integration -run TestBuildFixtures -count=1
-      - mkdir -p dist/it && tar -xzf dist/vmmon_linux_amd64.tar.gz -C dist/it vmmon
+      - mkdir -p dist/it && tar -xzf dist/vmmon_linux_{{.ARCH}}.tar.gz -C dist/it vmmon
       - for: { var: IMAGES, split: " " }
         cmd: |
           set -- $(echo "{{.ITEM}}" | tr '=' ' ')
-          sh testdata/integration/run.sh "$1" "$2" dist/it/vmmon "$VMMON_IT_STATE"
-          docker run --rm -v "$PWD/dist/vmmon_linux_amd64.deb:/vmmon.deb:ro" -v "$PWD/testdata/integration/deb.sh:/deb.sh:ro" "$1" sh /deb.sh /vmmon.deb
+          sh testdata/integration/run.sh "$1" "$2" dist/it/vmmon "$VMMON_IT_STATE" {{.ARCH}}
+          docker run --rm --platform linux/{{.ARCH}} -v "$PWD/dist/vmmon_linux_{{.ARCH}}.deb:/vmmon.deb:ro" -v "$PWD/testdata/integration/deb.sh:/deb.sh:ro" "$1" sh /deb.sh /vmmon.deb
     vars:
+      HOST_ARCH: { sh: go env GOARCH }
+      # Task-level vars beat CLI vars, so default keeps `ARCH=amd64` on the command line working.
+      ARCH: '{{.ARCH | default .HOST_ARCH}}'
       IMAGES: debian:12=Debian:12 debian:13=Debian:13 ubuntu:22.04=Ubuntu:22.04:LTS ubuntu:24.04=Ubuntu:24.04:LTS
   snapshot:
     desc: Build a local goreleaser snapshot into dist/, publishing nothing

@@ -1,13 +1,14 @@
 #!/bin/sh
 # Asserts on what the binary printed: version.txt, inventory.json and scan.json in
-# DIR. Needs jq. Usage: check.sh DIR ECOSYSTEM [ARCH]
+# DIR. Needs jq. Usage: check.sh DIR ECOSYSTEM ARCH
+# ARCH is a GOARCH name, as `vmmon version` prints it.
 # $eco in the filters is a jq variable, so single quotes are right.
 # shellcheck disable=SC2016
 set -eu
 
 dir="$1"
 ecosystem="$2"
-arch="${3:-amd64}"
+arch="$3"
 
 die() {
 	printf 'check failed (%s): %s\n' "$ecosystem" "$1" >&2
