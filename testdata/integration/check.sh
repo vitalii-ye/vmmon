@@ -24,7 +24,7 @@ grep -Eq "^vmmon .*linux/$arch\)$" "$dir/version.txt" || die "version.txt: $(cat
 assert inventory.json '.release.ecosystem == $eco'
 assert inventory.json '.hostname | length > 0'
 assert inventory.json '.packages | length > 0'
-assert inventory.json 'any(.packages[]; .name == "bash" and .source_name == "bash" and .source_version == .version)'
+assert inventory.json 'any(.packages[]; .name == "bash" and .source_name == "bash" and .source_version == (.version | sub("\\+b[0-9]+$"; "")))'
 # The source mapping OSV matching depends on.
 assert inventory.json 'any(.packages[]; .name == "libc6" and .source_name == "glibc")'
 

@@ -26,4 +26,5 @@ vmmon version >"$out/version.txt"
 vmmon inventory --json >"$out/inventory.json"
 vmmon scan --json >"$out/scan.json"
 
-sh "$here/check.sh" "$out" "$ecosystem"
+arch="$(docker run --rm --network none "$image" dpkg --print-architecture)"
+sh "$here/check.sh" "$out" "$ecosystem" "$arch"
