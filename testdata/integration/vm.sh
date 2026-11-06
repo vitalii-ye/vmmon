@@ -131,7 +131,8 @@ qemu-system-x86_64 \
 
 ssh_opts="-i $work/key -p $port -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -o BatchMode=yes -o ConnectTimeout=5"
 # The options are plain words without spaces in their values, so splitting is wanted.
-# shellcheck disable=SC2086
+# Arguments are meant to expand on the client side (SC2029).
+# shellcheck disable=SC2086,SC2029
 vmssh() { ssh $ssh_opts tester@127.0.0.1 "$@"; }
 
 serial_tail() {
@@ -342,7 +343,7 @@ echo "ok: vm install, setup, service, upgrade, remove, purge"
 GUEST
 
 status=0
-# shellcheck disable=SC2086
+# shellcheck disable=SC2086,SC2029
 ssh $ssh_opts tester@127.0.0.1 sudo sh -s -- "$sync" "$sync_timeout" \
 	"${VMMON_OSV_BASE_URL:--}" "${VMMON_KEV_URL:--}" "${VMMON_EPSS_URL:--}" \
 	<"$work/guest.sh" || status=$?
