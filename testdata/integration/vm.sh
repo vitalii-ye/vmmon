@@ -129,7 +129,7 @@ qemu-system-x86_64 \
 	-nic "user,model=virtio-net-pci,hostfwd=tcp:127.0.0.1:$port-:22" \
 	-pidfile "$pidfile" -daemonize
 
-ssh_opts="-i $work/key -p $port -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -o BatchMode=yes -o ConnectTimeout=5"
+ssh_opts="-i $work/key -o Port=$port -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -o BatchMode=yes -o ConnectTimeout=5"
 # The options are plain words without spaces in their values, so splitting is wanted.
 # Arguments are meant to expand on the client side (SC2029).
 # shellcheck disable=SC2086,SC2029
