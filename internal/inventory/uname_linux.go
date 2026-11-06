@@ -14,7 +14,7 @@ func uname() (string, error) {
 		if c == 0 {
 			break
 		}
-		release = append(release, byte(c))
+		release = append(release, byte(c)) //nolint:gosec // c is a C char; the cast only reinterprets its bits
 	}
 	return string(release), nil
 }

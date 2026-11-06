@@ -15,7 +15,7 @@ func init() {
 			Short: "Print build information",
 			Args:  cobra.NoArgs,
 			Run: func(cmd *cobra.Command, _ []string) {
-				fmt.Fprintln(cmd.OutOrStdout(), buildinfo.String())
+				_, _ = fmt.Fprintln(cmd.OutOrStdout(), buildinfo.String())
 			},
 		}
 	})

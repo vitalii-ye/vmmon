@@ -97,7 +97,7 @@ func flock(path string, wait bool) (func(), error) {
 		return nil, err
 	}
 	if err := fsutil.MatchDirOwner(path); err != nil {
-		f.Close()
+		_ = f.Close()
 		return nil, err
 	}
 	how := syscall.LOCK_EX
@@ -111,13 +111,13 @@ func flock(path string, wait bool) (func(), error) {
 		}
 	}
 	if err != nil {
-		f.Close()
+		_ = f.Close()
 		if errors.Is(err, syscall.EWOULDBLOCK) {
 			return nil, ErrSyncInProgress
 		}
 		return nil, fmt.Errorf("lock %s: %w", path, err)
 	}
-	return func() { f.Close() }, nil
+	return func() { _ = f.Close() }, nil
 }
 
 // RemoveTemps deletes temporary files in dir left by a killed run, for files
@@ -130,7 +130,7 @@ func RemoveTemps(dir, prefix string) {
 	}
 	for _, e := range entries {
 		if strings.HasPrefix(e.Name(), prefix) && strings.Contains(e.Name(), ".tmp-") {
-			os.Remove(filepath.Join(dir, e.Name()))
+			_ = os.Remove(filepath.Join(dir, e.Name()))
 		}
 	}
 }
@@ -143,14 +143,14 @@ func Compact(path string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	defer src.Close()
+	defer func() { _ = src.Close() }()
 	tmp, err := os.CreateTemp(filepath.Dir(path), filepath.Base(path)+".compact.tmp-*")
 	if err != nil {
 		return "", err
 	}
-	tmp.Close()
+	_ = tmp.Close()
 	if err := compactTo(tmp.Name(), src); err != nil {
-		os.Remove(tmp.Name())
+		_ = os.Remove(tmp.Name())
 		return "", err
 	}
 	return tmp.Name(), nil
@@ -161,7 +161,7 @@ func compactTo(path string, src *bolt.DB) error {
 	if err != nil {
 		return err
 	}
-	defer dst.Close()
+	defer func() { _ = dst.Close() }()
 	if err := bolt.Compact(dst, src, 4<<20); err != nil {
 		return err
 	}
@@ -188,7 +188,7 @@ func syncDir(dir string) error {
 	if err != nil {
 		return err
 	}
-	defer d.Close()
+	defer func() { _ = d.Close() }()
 	return d.Sync()
 }
 

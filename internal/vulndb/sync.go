@@ -129,7 +129,7 @@ func (s *Store) fullReason(opts SyncOptions, em EcosystemMeta) string {
 	if err != nil {
 		return "unreadable database: " + err.Error()
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 	reason := ""
 	err = db.View(func(tx *bolt.Tx) error {
 		if err := checkFormat(tx); err != nil {
@@ -167,8 +167,8 @@ func (s *Store) full(ctx context.Context) (SyncResult, func(*EcosystemMeta, time
 	if err != nil {
 		return SyncResult{}, nil, err
 	}
-	defer os.Remove(zf.Name())
-	defer zf.Close()
+	defer func() { _ = os.Remove(zf.Name()) }()
+	defer func() { _ = zf.Close() }()
 
 	dl := s.opts.Download
 	dl.Preflight = func(size int64) error {
@@ -189,8 +189,8 @@ func (s *Store) full(ctx context.Context) (SyncResult, func(*EcosystemMeta, time
 	if err != nil {
 		return SyncResult{}, nil, err
 	}
-	tmp.Close()
-	defer os.Remove(tmp.Name())
+	_ = tmp.Close()
+	defer func() { _ = os.Remove(tmp.Name()) }()
 
 	b, err := s.build(ctx, zf, size, tmp.Name())
 	if err != nil {
@@ -200,7 +200,7 @@ func (s *Store) full(ctx context.Context) (SyncResult, func(*EcosystemMeta, time
 	if err != nil {
 		return SyncResult{}, nil, err
 	}
-	defer os.Remove(compacted)
+	defer func() { _ = os.Remove(compacted) }()
 	if err := PublishFile(compacted, s.Path()); err != nil {
 		return SyncResult{}, nil, err
 	}
@@ -243,20 +243,20 @@ func (s *Store) build(ctx context.Context, zf io.ReaderAt, size int64, path stri
 	if err != nil {
 		return b, err
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 	var oldTx *bolt.Tx
 	if old := s.openOld(); old != nil {
-		defer old.Close()
+		defer func() { _ = old.Close() }()
 		if oldTx, err = old.Begin(false); err != nil {
 			return b, err
 		}
-		defer oldTx.Rollback()
+		defer func() { _ = oldTx.Rollback() }()
 	}
 
 	var tx *bolt.Tx
 	defer func() {
 		if tx != nil {
-			tx.Rollback()
+			_ = tx.Rollback()
 		}
 	}()
 	begin := func() error {
@@ -350,7 +350,7 @@ func (s *Store) openOld() *bolt.DB {
 		return nil
 	}
 	if err := db.View(checkFormat); err != nil {
-		db.Close()
+		_ = db.Close()
 		return nil
 	}
 	return db
@@ -434,7 +434,7 @@ func readEntry(f *zip.File, buf *bytes.Buffer) (*Record, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer rc.Close()
+	defer func() { _ = rc.Close() }()
 	buf.Reset()
 	// Reading to the end makes the zip reader check the entry's CRC.
 	if _, err := buf.ReadFrom(io.LimitReader(rc, maxRecordBytes)); err != nil {
@@ -528,7 +528,7 @@ func (s *Store) incremental(ctx context.Context, em EcosystemMeta) (SyncResult, 
 		if err != nil {
 			return err
 		}
-		defer body.Close()
+		defer func() { _ = body.Close() }()
 		fresh, overlap, newest, over, err = readChanges(body, em.Cursor, cutoff, s.opts.FullSyncThreshold)
 		if _, bad := errors.AsType[malformedError](err); bad {
 			return permanentError{err}
@@ -613,7 +613,7 @@ func (s *Store) withRead(fn func(*bolt.Tx) error) error {
 	if err != nil {
 		return err
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 	return db.View(fn)
 }
 
@@ -627,7 +627,7 @@ func (s *Store) get(ctx context.Context, u string) (io.ReadCloser, error) {
 		return nil, err
 	}
 	if resp.StatusCode != http.StatusOK {
-		resp.Body.Close()
+		_ = resp.Body.Close()
 		return nil, statusError(u, resp.StatusCode)
 	}
 	return resp.Body, nil
@@ -688,7 +688,7 @@ func (s *Store) fetchRecord(ctx context.Context, id string) (fetchedRecord, erro
 		if err != nil {
 			return err
 		}
-		defer body.Close()
+		defer func() { _ = body.Close() }()
 		data, err = io.ReadAll(io.LimitReader(body, maxRecordBytes))
 		return err
 	})
@@ -718,7 +718,7 @@ func (s *Store) apply(fetched []fetchedRecord) (changedRecords int, packages []s
 	if err != nil {
 		return 0, nil, 0, 0, fmt.Errorf("open %s: %w", s.Path(), err)
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 	changed := map[string]struct{}{}
 	note := func(names []string) {
 		changedRecords++

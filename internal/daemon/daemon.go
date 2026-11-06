@@ -173,7 +173,7 @@ func New(cfg *config.Config, deps Deps) *Daemon {
 func (d *Daemon) Run(ctx context.Context) error {
 	if err := d.Start(ctx); err != nil {
 		if ctx.Err() != nil {
-			return nil
+			return nil //nolint:nilerr // ctx ending is a clean shutdown, not a failure
 		}
 		return err
 	}

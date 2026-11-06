@@ -41,16 +41,16 @@ func init() {
 
 func printInventory(out io.Writer, h *inventory.Host) error {
 	w := tabwriter.NewWriter(out, 0, 0, 2, ' ', 0)
-	fmt.Fprintf(w, "Host:\t%s\n", h.Hostname)
-	fmt.Fprintf(w, "Release:\t%s\n", h.Release.Ecosystem)
-	fmt.Fprintf(w, "Kernel:\t%s\n", kernelSummary(h.Kernel))
-	fmt.Fprintf(w, "Packages:\t%d\n\n", len(h.Packages))
+	_, _ = fmt.Fprintf(w, "Host:\t%s\n", h.Hostname)
+	_, _ = fmt.Fprintf(w, "Release:\t%s\n", h.Release.Ecosystem)
+	_, _ = fmt.Fprintf(w, "Kernel:\t%s\n", kernelSummary(h.Kernel))
+	_, _ = fmt.Fprintf(w, "Packages:\t%d\n\n", len(h.Packages))
 	if err := w.Flush(); err != nil {
 		return err
 	}
-	fmt.Fprintln(w, "NAME\tVERSION\tARCH\tSOURCE\tSOURCE VERSION")
+	_, _ = fmt.Fprintln(w, "NAME\tVERSION\tARCH\tSOURCE\tSOURCE VERSION")
 	for _, p := range h.Packages {
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\n", p.Name, p.Version, p.Arch, p.SourceName, p.SourceVersion)
+		_, _ = fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\n", p.Name, p.Version, p.Arch, p.SourceName, p.SourceVersion)
 	}
 	return w.Flush()
 }

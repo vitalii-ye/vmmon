@@ -27,7 +27,7 @@ func (HostSystem) HasSystemd() bool {
 // Systemctl implements System.
 func (HostSystem) Systemctl(ctx context.Context, args ...string) error {
 	var out bytes.Buffer
-	cmd := exec.CommandContext(ctx, "systemctl", args...)
+	cmd := exec.CommandContext(ctx, "systemctl", args...) //nolint:gosec // args are fixed by the callers in this package
 	cmd.Stdout, cmd.Stderr = &out, &out
 	if err := cmd.Run(); err != nil {
 		return fmt.Errorf("systemctl %s: %w: %s", strings.Join(args, " "), err, strings.TrimSpace(out.String()))

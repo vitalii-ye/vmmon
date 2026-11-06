@@ -175,7 +175,7 @@ func (d *download) attempt(ctx context.Context) error {
 	if err != nil {
 		return attemptError(ctx, err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	switch resp.StatusCode {
 	case http.StatusOK:
@@ -256,10 +256,10 @@ func withRetry(ctx context.Context, opts DownloadOptions, fn func(context.Contex
 func checkDiskSpace(dir string, need int64) error {
 	var st syscall.Statfs_t
 	if err := syscall.Statfs(dir, &st); err != nil {
-		return nil // Not knowing is no reason to refuse; writes fail clearly anyway.
+		return nil //nolint:nilerr // Not knowing is no reason to refuse; writes fail clearly anyway.
 	}
-	free := uint64(st.Bavail) * uint64(st.Bsize)
-	if free < uint64(need) {
+	free := uint64(st.Bavail) * uint64(st.Bsize) //nolint:unconvert,gosec // field types differ between platforms; both values are non-negative
+	if free < uint64(need) {                     //nolint:gosec // need is a non-negative size
 		return fmt.Errorf("not enough disk space in %s: need about %d MB, have %d MB", dir, need>>20, free>>20)
 	}
 	return nil

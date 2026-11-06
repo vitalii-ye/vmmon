@@ -292,7 +292,7 @@ func TestNetworkFailureIsQueueable(t *testing.T) {
 		t.Fatal(err)
 	}
 	addr := "http://" + l.Addr().String()
-	l.Close()
+	_ = l.Close()
 
 	n := NewTelegram(telegram.New(addr, telegramtest.Token, nil), "7")
 	err = n.Send(context.Background(), "hello")

@@ -63,7 +63,7 @@ func tokenize(html string) []token {
 // tagLen returns the length of the tag s starts with, or 0. A ">" inside a
 // quoted attribute does not end the tag.
 func tagLen(s string) int {
-	if len(s) < 3 || !(isTagNameByte(s[1]) || (s[1] == '/' && isTagNameByte(s[2]))) {
+	if len(s) < 3 || (!isTagNameByte(s[1]) && (s[1] != '/' || !isTagNameByte(s[2]))) {
 		return 0
 	}
 	var quote byte
@@ -95,7 +95,7 @@ func newTag(raw string) token {
 		t.kind = tokenClose
 		name = name[1:]
 	}
-	if i := strings.IndexFunc(name, func(r rune) bool { return r > 127 || !isTagNameByte(byte(r)) }); i >= 0 {
+	if i := strings.IndexFunc(name, func(r rune) bool { return r > 127 || !isTagNameByte(byte(r)) }); i >= 0 { //nolint:gosec // r <= 127 here
 		name = name[:i]
 	}
 	t.name = strings.ToLower(name)
@@ -112,7 +112,7 @@ func entityLen(s string) int {
 			}
 			return i + 1
 		}
-		if !(isTagNameByte(c) && c != '-') && c != '#' {
+		if (!isTagNameByte(c) || c == '-') && c != '#' {
 			return 0
 		}
 	}

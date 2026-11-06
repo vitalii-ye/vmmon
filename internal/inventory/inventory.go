@@ -45,7 +45,7 @@ func collect(ctx context.Context, rootPath string, live *liveHost) (*Host, error
 	if err != nil {
 		return nil, fmt.Errorf("open root: %w", err)
 	}
-	defer root.Close()
+	defer func() { _ = root.Close() }()
 
 	release, err := readRelease(root)
 	if err != nil {

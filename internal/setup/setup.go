@@ -179,7 +179,7 @@ func checkWritable(dir string) error {
 	if err != nil {
 		return err
 	}
-	f.Close()
+	_ = f.Close()
 	return os.Remove(f.Name())
 }
 
@@ -364,7 +364,7 @@ func (w *wizard) start(ctx context.Context, changed bool) error {
 	}
 	if err := w.System.Systemctl(ctx, "cat", unitName+".service"); err != nil {
 		w.printf("The %s service is not installed, so it was not started. Install the vmmon package, then run: %s\n", unitName, manual)
-		return nil
+		return nil //nolint:nilerr // a missing unit is reported to the user, not a setup failure
 	}
 	if w.cfg.Path != config.DefaultPath {
 		w.printf("Note: the service must have VMMON_CONFIG=%s to use these settings.\n", w.cfg.Path)
@@ -398,12 +398,12 @@ func SendTest(ctx context.Context, cfg *config.Config, out io.Writer) error {
 		if f, err := os.Open(cfg.SecretsPath()); errors.Is(err, fs.ErrPermission) {
 			return fmt.Errorf("cannot read %s, which holds the bot token. Try: sudo vmmon notify test", cfg.SecretsPath())
 		} else if err == nil {
-			f.Close()
+			_ = f.Close()
 		}
 	}
 	n, err := notify.New(cfg)
 	if err != nil {
-		return fmt.Errorf("Telegram is not set up. Run: %s", sudoHint)
+		return fmt.Errorf("Telegram is not set up. Run: %s", sudoHint) //nolint:staticcheck // Telegram is a proper noun
 	}
 	ctx, cancel := context.WithTimeout(ctx, sendTimeout)
 	defer cancel()
@@ -413,11 +413,11 @@ func SendTest(ctx context.Context, cfg *config.Config, out io.Writer) error {
 		}
 		return fmt.Errorf("test message not delivered: %w", err)
 	}
-	fmt.Fprintf(out, "Test message sent to chat %s.\n", cfg.Telegram.ChatID)
+	_, _ = fmt.Fprintf(out, "Test message sent to chat %s.\n", cfg.Telegram.ChatID)
 	return nil
 }
 
-func (w *wizard) printf(format string, args ...any) { fmt.Fprintf(w.Out, format, args...) }
+func (w *wizard) printf(format string, args ...any) { _, _ = fmt.Fprintf(w.Out, format, args...) }
 
 func (w *wizard) readSecret(ctx context.Context) (string, error) {
 	if w.ReadSecret == nil {

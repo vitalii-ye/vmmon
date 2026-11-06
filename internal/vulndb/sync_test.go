@@ -56,8 +56,8 @@ func (f *fakeOSV) serve(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	switch {
-	case name == "all.zip":
+	switch name {
+	case "all.zip":
 		f.zipGets++
 		if f.zipHook != nil {
 			hook := f.zipHook
@@ -69,8 +69,8 @@ func (f *fakeOSV) serve(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		http.ServeContent(w, r, "all.zip", time.Time{}, bytes.NewReader(f.zipLocked()))
-	case name == "modified_id.csv":
-		fmt.Fprint(w, f.csvLocked())
+	case "modified_id.csv":
+		_, _ = fmt.Fprint(w, f.csvLocked())
 	default:
 		id := strings.TrimSuffix(name, ".json")
 		f.recGets++
@@ -82,7 +82,7 @@ func (f *fakeOSV) serve(w http.ResponseWriter, r *http.Request) {
 			http.NotFound(w, r)
 			return
 		}
-		w.Write(rec.body)
+		_, _ = w.Write(rec.body)
 	}
 }
 
@@ -94,7 +94,7 @@ func (f *fakeOSV) zipLocked() []byte {
 		if err != nil {
 			f.t.Fatal(err)
 		}
-		w.Write(f.records[id].body)
+		_, _ = w.Write(f.records[id].body)
 	}
 	if err := zw.Close(); err != nil {
 		f.t.Fatal(err)
@@ -361,7 +361,7 @@ func TestFailedDownloadKeepsOldDB(t *testing.T) {
 	f.hooks(func(w http.ResponseWriter, _ *http.Request) bool {
 		// Promise more than is sent, so the client sees a truncated body.
 		w.Header().Set("Content-Length", "100000")
-		w.Write([]byte("PK partial"))
+		_, _ = w.Write([]byte("PK partial"))
 		return true
 	}, nil)
 	_, err := s.Sync(context.Background(), SyncOptions{Full: true})
@@ -406,7 +406,7 @@ func TestDownloadResumesWithRange(t *testing.T) {
 			z := f.zipLocked()
 			f.mu.Unlock()
 			w.Header().Set("Content-Length", fmt.Sprint(len(z)))
-			w.Write(z[:len(z)/2])
+			_, _ = w.Write(z[:len(z)/2])
 			w.(http.Flusher).Flush()
 			return true
 		}
@@ -646,14 +646,14 @@ func TestIncrementalBadRecordFallsBackToFull(t *testing.T) {
 	for name, hook := range map[string]func(http.ResponseWriter, string) bool{
 		"parse failure": func(w http.ResponseWriter, id string) bool {
 			if id == "DSA-2" {
-				w.Write([]byte("not json"))
+				_, _ = w.Write([]byte("not json"))
 				return true
 			}
 			return false
 		},
 		"wrong record": func(w http.ResponseWriter, id string) bool {
 			if id == "DSA-2" {
-				w.Write([]byte(`{"id":"DSA-X","modified":"2026-11-01T00:00:00Z"}`))
+				_, _ = w.Write([]byte(`{"id":"DSA-X","modified":"2026-11-01T00:00:00Z"}`))
 				return true
 			}
 			return false
@@ -778,14 +778,14 @@ func TestViewWithoutDB(t *testing.T) {
 }
 
 // blockedDownload starts a sync whose download hangs after the headers.
-func blockedDownload(t *testing.T, f *fakeOSV, s *Store, ctx context.Context) (<-chan error, func()) {
+func blockedDownload(ctx context.Context, t *testing.T, f *fakeOSV, s *Store) (<-chan error, func()) {
 	t.Helper()
 	entered := make(chan struct{})
 	release := make(chan struct{})
 	var once sync.Once
 	f.hooks(func(w http.ResponseWriter, r *http.Request) bool {
 		w.Header().Set("Content-Length", "1000")
-		w.Write([]byte("PK"))
+		_, _ = w.Write([]byte("PK"))
 		w.(http.Flusher).Flush()
 		once.Do(func() { close(entered) })
 		select {
@@ -818,7 +818,7 @@ func TestCancelDuringDownload(t *testing.T) {
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-	done, _ := blockedDownload(t, f, s, ctx)
+	done, _ := blockedDownload(ctx, t, f, s)
 
 	// Reads are unaffected while a sync is downloading: no bolt file is held.
 	wantStrings(t, "during sync", recordIDs(t, s, "openssl"), "DSA-1")
@@ -843,7 +843,7 @@ func TestSecondSyncGetsLockError(t *testing.T) {
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-	done, _ := blockedDownload(t, f, s, ctx)
+	done, _ := blockedDownload(ctx, t, f, s)
 
 	second := storeIn(t, dir, f)
 	before, _ := s.Status()
@@ -854,7 +854,7 @@ func TestSecondSyncGetsLockError(t *testing.T) {
 		t.Fatalf("lost race recorded as a failure: %+v", after)
 	}
 	cancel()
-	<-done
+	<-done //nolint:errcheck // the sync error is irrelevant after cancel
 	f.hooks(nil, nil)
 	mustSync(t, second, SyncOptions{Full: true})
 }

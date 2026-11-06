@@ -283,7 +283,7 @@ func TestPermissionDenied(t *testing.T) {
 	if err := os.Chmod(cfg.StateDir, 0o000); err != nil {
 		t.Fatal(err)
 	}
-	t.Cleanup(func() { os.Chmod(cfg.StateDir, 0o755) })
+	t.Cleanup(func() { _ = os.Chmod(cfg.StateDir, 0o755) })
 	_, err := Run(context.Background(), cfg, Options{Host: debianHost(pkg("bash", "5.0-1"))})
 	if !errors.Is(err, fs.ErrPermission) {
 		t.Errorf("err = %v, want ErrPermission", err)
@@ -292,8 +292,12 @@ func TestPermissionDenied(t *testing.T) {
 
 func TestUnsupportedRelease(t *testing.T) {
 	root := t.TempDir()
-	os.MkdirAll(filepath.Join(root, "etc"), 0o755)
-	os.WriteFile(filepath.Join(root, "etc/os-release"), []byte("ID=arch\n"), 0o644)
+	if err := os.MkdirAll(filepath.Join(root, "etc"), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(root, "etc/os-release"), []byte("ID=arch\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
 	_, err := Run(context.Background(), testConfig(t), Options{Root: root})
 	if !errors.Is(err, inventory.ErrUnsupportedRelease) {
 		t.Errorf("err = %v", err)

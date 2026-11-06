@@ -38,22 +38,22 @@ func BuildDB(t testing.TB, dbDir, ecosystem, root string, records map[string][]b
 		if err != nil {
 			t.Fatal(err)
 		}
-		w.Write(body)
+		_, _ = w.Write(body)
 	}
 	if err := zw.Close(); err != nil {
 		t.Fatal(err)
 	}
 	var epss bytes.Buffer
 	gz := gzip.NewWriter(&epss)
-	gz.Write(feeds.EPSS)
-	gz.Close()
+	_, _ = gz.Write(feeds.EPSS)
+	_ = gz.Close()
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/"+root+"/all.zip", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeContent(w, r, "all.zip", time.Time{}, bytes.NewReader(zipped.Bytes()))
 	})
-	mux.HandleFunc("/kev.json", func(w http.ResponseWriter, _ *http.Request) { w.Write(feeds.KEV) })
-	mux.HandleFunc("/epss.csv.gz", func(w http.ResponseWriter, _ *http.Request) { w.Write(epss.Bytes()) })
+	mux.HandleFunc("/kev.json", func(w http.ResponseWriter, _ *http.Request) { _, _ = w.Write(feeds.KEV) })
+	mux.HandleFunc("/epss.csv.gz", func(w http.ResponseWriter, _ *http.Request) { _, _ = w.Write(epss.Bytes()) })
 	srv := httptest.NewServer(mux)
 	defer srv.Close()
 

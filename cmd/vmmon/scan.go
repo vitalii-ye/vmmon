@@ -77,13 +77,13 @@ func printReport(w io.Writer, r *finding.Report) {
 	if r.Hostname != "" {
 		header = r.Hostname + " (" + r.Ecosystem + ")"
 	}
-	fmt.Fprintf(w, "%s: %d packages\n", header, r.PackagesCount)
-	fmt.Fprintf(w, "Database: %s\n", dbAge(r))
+	_, _ = fmt.Fprintf(w, "%s: %d packages\n", header, r.PackagesCount)
+	_, _ = fmt.Fprintf(w, "Database: %s\n", dbAge(r))
 	if r.RebootRequired {
-		fmt.Fprintln(w, "Reboot required.")
+		_, _ = fmt.Fprintln(w, "Reboot required.")
 	}
 	for _, warning := range r.Warnings {
-		fmt.Fprintln(w, "Warning:", warning)
+		_, _ = fmt.Fprintln(w, "Warning:", warning)
 	}
 
 	var kev, fixable []finding.Finding
@@ -97,20 +97,20 @@ func printReport(w io.Writer, r *finding.Report) {
 	}
 	if len(kev) > 0 {
 		slices.SortStableFunc(kev, bySeverity)
-		fmt.Fprintf(w, "\nKnown exploited (%d):\n", len(kev))
+		_, _ = fmt.Fprintf(w, "\nKnown exploited (%d):\n", len(kev))
 		for i := range kev {
 			printKEV(w, &kev[i])
 		}
 	}
 	if len(fixable) > 0 {
-		fmt.Fprintf(w, "\nFix available (%d):\n", len(fixable))
+		_, _ = fmt.Fprintf(w, "\nFix available (%d):\n", len(fixable))
 		printByPackage(w, fixable)
 	}
 
 	c := r.Counts
-	fmt.Fprintf(w, "\n%d findings: %d known exploited, %d with a fix, %d without a fix yet\n", c.Total, c.KEV, c.FixAvailable, c.NoFixYet)
+	_, _ = fmt.Fprintf(w, "\n%d findings: %d known exploited, %d with a fix, %d without a fix yet\n", c.Total, c.KEV, c.FixAvailable, c.NoFixYet)
 	if c.NoFixYet > 0 {
-		fmt.Fprintln(w, "Those without a fix are listed by `vmmon scan --json`.")
+		_, _ = fmt.Fprintln(w, "Those without a fix are listed by `vmmon scan --json`.")
 	}
 }
 
@@ -134,7 +134,7 @@ func humanAge(d time.Duration) string {
 }
 
 func printKEV(w io.Writer, f *finding.Finding) {
-	fmt.Fprintf(w, "  %s  %s %s%s  %s\n", f.VulnID, f.SourcePackage, f.InstalledVersion, fixSuffix(f.FixedVersion, f.RebootRequired), severityNote(f))
+	_, _ = fmt.Fprintf(w, "  %s  %s %s%s  %s\n", f.VulnID, f.SourcePackage, f.InstalledVersion, fixSuffix(f.FixedVersion, f.RebootRequired), severityNote(f))
 }
 
 // printByPackage prints one line per source package, worst package first: its
@@ -169,7 +169,7 @@ func printByPackage(w io.Writer, fs []finding.Finding) {
 		if extra := len(list) - maxCVEsPerLine; extra > 0 {
 			more = fmt.Sprintf(", +%d more", extra)
 		}
-		fmt.Fprintf(w, "  %s %s%s  %s%s\n", name, list[0].InstalledVersion, fixSuffix(fix, reboot), strings.Join(cves, ", "), more)
+		_, _ = fmt.Fprintf(w, "  %s %s%s  %s%s\n", name, list[0].InstalledVersion, fixSuffix(fix, reboot), strings.Join(cves, ", "), more)
 	}
 }
 

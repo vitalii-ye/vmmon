@@ -214,7 +214,7 @@ func (c *Client) call(ctx context.Context, method string, in, out any, timeout t
 	if err != nil {
 		return c.networkError(method, err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	data, err := io.ReadAll(io.LimitReader(resp.Body, maxResponse))
 	if err != nil {
 		return c.networkError(method, err)

@@ -33,7 +33,7 @@ func gz(t *testing.T, s string) []byte {
 	t.Helper()
 	var buf bytes.Buffer
 	w := gzip.NewWriter(&buf)
-	w.Write([]byte(s))
+	_, _ = w.Write([]byte(s))
 	if err := w.Close(); err != nil {
 		t.Fatal(err)
 	}
@@ -65,7 +65,7 @@ func newStore(t *testing.T, f *feeds) (*Store, string) {
 				w.WriteHeader(http.StatusInternalServerError)
 				return
 			}
-			w.Write(body)
+			_, _ = w.Write(body)
 		}
 	}
 	mux.HandleFunc("/kev.json", serve(func() []byte { return f.kev }))

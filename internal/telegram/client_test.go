@@ -137,7 +137,7 @@ func closedPort(t *testing.T) string {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer l.Close()
+	defer func() { _ = l.Close() }()
 	return "http://" + l.Addr().String()
 }
 
@@ -207,7 +207,7 @@ func TestRedirectNotFollowed(t *testing.T) {
 	target := httptest.NewServer(http.HandlerFunc(func(http.ResponseWriter, *http.Request) { hits++ }))
 	defer target.Close()
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		http.Redirect(w, r, target.URL+r.URL.Path, http.StatusTemporaryRedirect)
+		http.Redirect(w, r, target.URL+r.URL.Path, http.StatusTemporaryRedirect) //nolint:gosec // test server redirecting to its own fixture
 	}))
 	defer srv.Close()
 

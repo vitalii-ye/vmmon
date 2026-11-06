@@ -139,7 +139,7 @@ func TestKernelStateRebootOnlyWithinSourceLine(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer root.Close()
+	defer func() { _ = root.Close() }()
 
 	if k := kernelState(root, []Package{generic, aws}, "6.8.0-100-generic"); k.RebootRequired {
 		t.Error("another flavour's higher version must not require a reboot")

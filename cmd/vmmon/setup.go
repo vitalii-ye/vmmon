@@ -33,10 +33,10 @@ func init() {
 					if err != nil {
 						return err
 					}
-					defer term.Restore(fd, state)
+					defer func() { _ = term.Restore(fd, state) }()
 					deps.ReadSecret = func() (string, error) {
 						b, err := term.ReadPassword(fd)
-						fmt.Fprintln(cmd.OutOrStdout())
+						_, _ = fmt.Fprintln(cmd.OutOrStdout())
 						return string(b), err
 					}
 				}

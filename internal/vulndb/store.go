@@ -161,10 +161,10 @@ func (s *Store) View(ctx context.Context, fn func(Reader) error) error {
 	if err != nil {
 		return err
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 	return db.View(func(tx *bolt.Tx) error {
 		if err := checkFormat(tx); err != nil {
-			return fmt.Errorf("%w (%s)", ErrNoDB, err)
+			return fmt.Errorf("%w (%w)", ErrNoDB, err)
 		}
 		return fn(reader{s: s, tx: tx})
 	})
@@ -313,8 +313,8 @@ func compress(data []byte) []byte {
 	w := flateWriters.Get().(*flate.Writer)
 	defer flateWriters.Put(w)
 	w.Reset(&buf)
-	w.Write(data) // Writing to a bytes.Buffer cannot fail.
-	w.Close()
+	_, _ = w.Write(data) // Writing to a bytes.Buffer cannot fail.
+	_ = w.Close()
 	return buf.Bytes()
 }
 

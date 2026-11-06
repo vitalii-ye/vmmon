@@ -155,8 +155,8 @@ func (s *Store) download(ctx context.Context, url, pattern string) (*os.File, st
 		return nil, "", nil, err
 	}
 	cleanup := func() {
-		f.Close()
-		os.Remove(f.Name())
+		_ = f.Close()
+		_ = os.Remove(f.Name())
 	}
 	sum, err := vulndb.Download(ctx, s.opts.HTTPClient, url, f, s.opts.Download)
 	if err == nil {
@@ -211,7 +211,7 @@ func (s *Store) readKEV() (*kevData, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close()
+	defer func() { _ = f.Close() }()
 	return parseKEV(f)
 }
 
@@ -266,8 +266,8 @@ func (s *Store) syncEPSS(ctx context.Context, prevSum string) (updated bool, rec
 	if err != nil {
 		return false, 0, "", "", err
 	}
-	tmp.Close()
-	defer os.Remove(tmp.Name())
+	_ = tmp.Close()
+	defer func() { _ = os.Remove(tmp.Name()) }()
 
 	path := filepath.Join(s.dir, epssFile)
 	if _, err := os.Stat(path); err == nil && sum == prevSum {
@@ -285,7 +285,7 @@ func (s *Store) syncEPSS(ctx context.Context, prevSum string) (updated bool, rec
 	if err != nil {
 		return false, 0, "", "", err
 	}
-	defer os.Remove(compacted)
+	defer func() { _ = os.Remove(compacted) }()
 	if err := vulndb.PublishFile(compacted, path); err != nil {
 		return false, 0, "", "", err
 	}
@@ -299,7 +299,7 @@ func buildEPSS(r io.Reader, path string) (records int, version string, err error
 	if err != nil {
 		return 0, "", err
 	}
-	defer gz.Close()
+	defer func() { _ = gz.Close() }()
 	br := bufio.NewReaderSize(gz, 64<<10)
 	version, err = readEPSSComments(br)
 	if err != nil {
@@ -320,7 +320,7 @@ func buildEPSS(r io.Reader, path string) (records int, version string, err error
 	if err != nil {
 		return 0, "", err
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 	for done := false; !done; {
 		err := db.Update(func(tx *bolt.Tx) error {
 			b, err := tx.CreateBucketIfNotExists(bucketEPSS)
@@ -439,7 +439,7 @@ func (s *Store) View(ctx context.Context, fn func(Lookup) error) error {
 	if err != nil {
 		return fmt.Errorf("open %s: %w", path, err)
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 	return db.View(func(tx *bolt.Tx) error {
 		l.epss = tx.Bucket(bucketEPSS)
 		return fn(l)

@@ -121,7 +121,7 @@ func newHarness(t *testing.T) *harness {
 	t.Helper()
 	for _, k := range []string{"VMMON_CONFIG", "VMMON_TELEGRAM_TOKEN", "VMMON_TELEGRAM_CHAT_ID", "VMMON_POLICY", "VMMON_STATE_DIR"} {
 		t.Setenv(k, "")
-		os.Unsetenv(k) // config treats a set-but-empty variable as an override.
+		_ = os.Unsetenv(k) // config treats a set-but-empty variable as an override.
 	}
 	srv := telegramtest.New(t)
 	t.Setenv("VMMON_TELEGRAM_API_BASE_URL", srv.URL)
@@ -140,7 +140,7 @@ func newHarness(t *testing.T) *harness {
 
 // run runs the wizard with the given answers and checks the token stayed out of
 // everything the user sees.
-func (h *harness) run(t *testing.T, ctx context.Context, opts Options, input string) error {
+func (h *harness) run(ctx context.Context, t *testing.T, opts Options, input string) error {
 	t.Helper()
 	err := Run(ctx, opts, Deps{
 		In:      strings.NewReader(input),
@@ -178,7 +178,7 @@ func (h *harness) seed(t *testing.T, policy string) {
 	opts.Policy = policy
 	opts.Yes = true
 	opts.NoStart = true
-	if err := h.run(t, context.Background(), opts, ""); err != nil {
+	if err := h.run(context.Background(), t, opts, ""); err != nil {
 		t.Fatal(err)
 	}
 	h.out.Reset()
@@ -238,7 +238,7 @@ func TestPairingRightCode(t *testing.T) {
 			h.srv.AddMessage(testChat, "/start "+testCode)
 		}
 	}
-	if err := h.run(t, context.Background(), h.opts, telegramtest.Token+"\n\n"); err != nil {
+	if err := h.run(context.Background(), t, h.opts, telegramtest.Token+"\n\n"); err != nil {
 		t.Fatalf("%v\n%s", err, h.out.String())
 	}
 
@@ -321,7 +321,7 @@ func TestPairingWrongCodeThenRight(t *testing.T) {
 			h.srv.AddMessage(testChat, "/start@VMMON_test_bot "+testCode)
 		}
 	}
-	if err := h.run(t, context.Background(), h.opts, telegramtest.Token+"\n\n"); err != nil {
+	if err := h.run(context.Background(), t, h.opts, telegramtest.Token+"\n\n"); err != nil {
 		t.Fatalf("%v\n%s", err, h.out.String())
 	}
 	if got := h.load(t).Telegram.ChatID; got != chatStr {
@@ -343,7 +343,7 @@ func TestPairingAdvancesOffsetOnlyPastAFullPage(t *testing.T) {
 			h.srv.AddMessage(testChat, "/start "+testCode)
 		}
 	}
-	if err := h.run(t, context.Background(), h.opts, telegramtest.Token+"\n\n"); err != nil {
+	if err := h.run(context.Background(), t, h.opts, telegramtest.Token+"\n\n"); err != nil {
 		t.Fatalf("%v\n%s", err, h.out.String())
 	}
 	polls := h.srv.Polls()
@@ -359,7 +359,7 @@ func TestPairingTimeout(t *testing.T) {
 	h := newHarness(t)
 	h.srv.OnPoll = func(_ int, p telegramtest.Poll) { h.clock.advance(p.Timeout) }
 	start := time.Now()
-	err := h.run(t, context.Background(), h.opts, telegramtest.Token+"\n\n")
+	err := h.run(context.Background(), t, h.opts, telegramtest.Token+"\n\n")
 	if err == nil || !strings.Contains(err.Error(), "within 3m0s") || !strings.Contains(err.Error(), "setup again") {
 		t.Fatalf("err = %v", err)
 	}
@@ -384,7 +384,7 @@ func TestPairingContextCancel(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	h.srv.OnPoll = func(int, telegramtest.Poll) { cancel() }
-	err := h.run(t, ctx, h.opts, telegramtest.Token+"\n\n")
+	err := h.run(ctx, t, h.opts, telegramtest.Token+"\n\n")
 	if !errors.Is(err, context.Canceled) {
 		t.Fatalf("err = %v", err)
 	}
@@ -402,7 +402,7 @@ func TestPairingSurvivesTransientFailures(t *testing.T) {
 			h.srv.AddMessage(testChat, "/start "+testCode)
 		}
 	}
-	if err := h.run(t, context.Background(), h.opts, telegramtest.Token+"\n\n"); err != nil {
+	if err := h.run(context.Background(), t, h.opts, telegramtest.Token+"\n\n"); err != nil {
 		t.Fatalf("%v\n%s", err, h.out.String())
 	}
 	if got := h.clock.now().Sub(time.Unix(1_700_000_000, 0)); got < 11*time.Second {
@@ -413,7 +413,7 @@ func TestPairingSurvivesTransientFailures(t *testing.T) {
 func TestPairingStopsOnPermanentFailure(t *testing.T) {
 	h := newHarness(t)
 	h.srv.Fail(telegramtest.Failure{Code: 401, Description: "Unauthorized"})
-	err := h.run(t, context.Background(), h.opts, telegramtest.Token+"\n\n")
+	err := h.run(context.Background(), t, h.opts, telegramtest.Token+"\n\n")
 	if err == nil || !strings.Contains(err.Error(), "401") {
 		t.Fatalf("err = %v", err)
 	}
@@ -423,7 +423,7 @@ func TestPairingStopsOnPermanentFailure(t *testing.T) {
 func TestPairingConflictExplained(t *testing.T) {
 	h := newHarness(t)
 	h.srv.Fail(telegramtest.Failure{Code: 409, Description: "Conflict: terminated by other getUpdates request"})
-	err := h.run(t, context.Background(), h.opts, telegramtest.Token+"\n\n")
+	err := h.run(context.Background(), t, h.opts, telegramtest.Token+"\n\n")
 	if err == nil || !strings.Contains(err.Error(), "--chat-id") {
 		t.Fatalf("err = %v", err)
 	}
@@ -432,7 +432,7 @@ func TestPairingConflictExplained(t *testing.T) {
 func TestWebhookManualChatID(t *testing.T) {
 	h := newHarness(t)
 	h.srv.WebhookURL = "https://example.com/hook"
-	err := h.run(t, context.Background(), h.opts, telegramtest.Token+"\nnot-an-id\n"+chatStr+"\n\n")
+	err := h.run(context.Background(), t, h.opts, telegramtest.Token+"\nnot-an-id\n"+chatStr+"\n\n")
 	if err != nil {
 		t.Fatalf("%v\n%s", err, h.out.String())
 	}
@@ -457,7 +457,7 @@ func TestWebhookURLQuotingTokenIsRedacted(t *testing.T) {
 		h.srv.WebhookURL = "https://example.com/" + telegramtest.Token
 		opts.ConfigPath = h.path
 		opts.TokenFile = h.writeTokenFile(t, telegramtest.Token)
-		if err := h.run(t, context.Background(), opts, "\n"); err != nil && opts.Yes {
+		if err := h.run(context.Background(), t, opts, "\n"); err != nil && opts.Yes {
 			t.Fatal(err)
 		}
 		if !strings.Contains(h.out.String(), "https://example.com/<TOKEN>") {
@@ -469,7 +469,7 @@ func TestWebhookURLQuotingTokenIsRedacted(t *testing.T) {
 func TestWebhookExit(t *testing.T) {
 	h := newHarness(t)
 	h.srv.WebhookURL = "https://example.com/hook"
-	err := h.run(t, context.Background(), h.opts, telegramtest.Token+"\n\n")
+	err := h.run(context.Background(), t, h.opts, telegramtest.Token+"\n\n")
 	if err == nil || !strings.Contains(err.Error(), "webhook") {
 		t.Fatalf("err = %v", err)
 	}
@@ -485,7 +485,7 @@ func TestWebhookDoesNotBlockKnownChat(t *testing.T) {
 	opts := h.opts
 	opts.TokenFile = h.writeTokenFile(t, telegramtest.Token)
 	opts.ChatID, opts.Yes = chatStr, true
-	if err := h.run(t, context.Background(), opts, ""); err != nil {
+	if err := h.run(context.Background(), t, opts, ""); err != nil {
 		t.Fatal(err)
 	}
 	if !strings.Contains(h.out.String(), "webhook set") {
@@ -501,7 +501,7 @@ func TestInvalidTokenReprompts(t *testing.T) {
 		}
 	}
 	input := "999:wrong\nbad'quote\n" + telegramtest.Token + "\n\n"
-	if err := h.run(t, context.Background(), h.opts, input); err != nil {
+	if err := h.run(context.Background(), t, h.opts, input); err != nil {
 		t.Fatalf("%v\n%s", err, h.out.String())
 	}
 	out := h.out.String()
@@ -521,7 +521,7 @@ func TestInvalidTokenNonInteractive(t *testing.T) {
 	opts := h.opts
 	opts.TokenFile = h.writeTokenFile(t, "999:wrong")
 	opts.ChatID, opts.Yes = chatStr, true
-	err := h.run(t, context.Background(), opts, "")
+	err := h.run(context.Background(), t, opts, "")
 	if err == nil || !strings.Contains(err.Error(), "401") || strings.Contains(err.Error(), "999:wrong") {
 		t.Fatalf("err = %v", err)
 	}
@@ -538,7 +538,7 @@ func TestTestMessageFailureWritesNothing(t *testing.T) {
 		opts := h.opts
 		opts.TokenFile = h.writeTokenFile(t, telegramtest.Token)
 		opts.ChatID, opts.Yes = chatStr, true
-		err := h.run(t, context.Background(), opts, "")
+		err := h.run(context.Background(), t, opts, "")
 		if err == nil || !strings.Contains(err.Error(), "test message not delivered") || !strings.Contains(err.Error(), "nothing was saved") {
 			t.Fatalf("err = %v", err)
 		}
@@ -557,7 +557,7 @@ func TestRerunKeepsEverything(t *testing.T) {
 
 	opts := h.opts
 	opts.NoStart = true
-	if err := h.run(t, context.Background(), opts, "\n\n\n"); err != nil {
+	if err := h.run(context.Background(), t, opts, "\n\n\n"); err != nil {
 		t.Fatalf("%v\n%s", err, h.out.String())
 	}
 	if h.srv.Calls("getUpdates") != 0 {
@@ -587,7 +587,7 @@ func TestRerunChangesOnlyWhatIsEdited(t *testing.T) {
 
 	opts := h.opts
 	opts.NoStart = true
-	if err := h.run(t, context.Background(), opts, "\n\neverything\n"); err != nil {
+	if err := h.run(context.Background(), t, opts, "\n\neverything\n"); err != nil {
 		t.Fatalf("%v\n%s", err, h.out.String())
 	}
 	got := read(t, h.path)
@@ -618,7 +618,7 @@ func TestRerunNewTokenAndRepairing(t *testing.T) {
 	opts := h.opts
 	opts.NoStart = true
 	// The old token no longer works, so Enter is refused before the new one.
-	if err := h.run(t, context.Background(), opts, "\n777:new-token\npair\n\n"); err != nil {
+	if err := h.run(context.Background(), t, opts, "\n777:new-token\npair\n\n"); err != nil {
 		t.Fatalf("%v\n%s", err, h.out.String())
 	}
 	c := h.load(t)
@@ -632,7 +632,7 @@ func TestNonInteractive(t *testing.T) {
 	opts := h.opts
 	opts.TokenFile = h.writeTokenFile(t, "  "+telegramtest.Token+"  ")
 	opts.ChatID, opts.Policy, opts.Yes = chatStr, config.PresetCritical, true
-	if err := h.run(t, context.Background(), opts, ""); err != nil {
+	if err := h.run(context.Background(), t, opts, ""); err != nil {
 		t.Fatalf("%v\n%s", err, h.out.String())
 	}
 	if h.srv.Calls("getUpdates") != 0 {
@@ -665,7 +665,7 @@ func TestNonInteractiveMissingValues(t *testing.T) {
 			opts := h.opts
 			opts.Yes = true
 			tc.opts(&opts, h.writeTokenFile(t, telegramtest.Token))
-			err := h.run(t, context.Background(), opts, "")
+			err := h.run(context.Background(), t, opts, "")
 			if err == nil || !strings.Contains(err.Error(), tc.wanted) {
 				t.Fatalf("err = %v", err)
 			}
@@ -678,14 +678,14 @@ func TestEmptyTokenFile(t *testing.T) {
 	h := newHarness(t)
 	opts := h.opts
 	opts.TokenFile = h.writeTokenFile(t, "   ")
-	if err := h.run(t, context.Background(), opts, ""); err == nil || !strings.Contains(err.Error(), "empty") {
+	if err := h.run(context.Background(), t, opts, ""); err == nil || !strings.Contains(err.Error(), "empty") {
 		t.Fatalf("err = %v", err)
 	}
 }
 
 func TestInputEndedExplainsScripts(t *testing.T) {
 	h := newHarness(t)
-	err := h.run(t, context.Background(), h.opts, "")
+	err := h.run(context.Background(), t, h.opts, "")
 	if err == nil || !strings.Contains(err.Error(), "--yes") {
 		t.Fatalf("err = %v", err)
 	}
@@ -717,7 +717,7 @@ func TestIdempotent(t *testing.T) {
 	opts := h.opts
 	opts.TokenFile = h.writeTokenFile(t, telegramtest.Token)
 	opts.ChatID, opts.Policy, opts.Yes = chatStr, config.PresetQuiet, true
-	if err := h.run(t, context.Background(), opts, ""); err != nil {
+	if err := h.run(context.Background(), t, opts, ""); err != nil {
 		t.Fatal(err)
 	}
 	type snapshot struct {
@@ -739,7 +739,7 @@ func TestIdempotent(t *testing.T) {
 	time.Sleep(10 * time.Millisecond) // Let a rewrite show in the mtime.
 
 	h.out.Reset()
-	if err := h.run(t, context.Background(), opts, ""); err != nil {
+	if err := h.run(context.Background(), t, opts, ""); err != nil {
 		t.Fatal(err)
 	}
 	if snap(h.path) != c1 || snap(secrets) != s1 {
@@ -786,7 +786,7 @@ func TestServiceStates(t *testing.T) {
 			h.sys = &sys
 			opts := h.opts
 			opts.Policy, opts.Yes = tc.preset, true
-			err := h.run(t, context.Background(), opts, "")
+			err := h.run(context.Background(), t, opts, "")
 			if (err != nil) != tc.wantErr {
 				t.Fatalf("err = %v", err)
 			}
@@ -811,7 +811,7 @@ func TestNoStartLeavesServiceAlone(t *testing.T) {
 	opts := h.opts
 	opts.TokenFile = h.writeTokenFile(t, telegramtest.Token)
 	opts.ChatID, opts.Yes, opts.NoStart = chatStr, true, true
-	if err := h.run(t, context.Background(), opts, ""); err != nil {
+	if err := h.run(context.Background(), t, opts, ""); err != nil {
 		t.Fatal(err)
 	}
 	if len(h.sys.calls) != 0 {
@@ -822,7 +822,7 @@ func TestNoStartLeavesServiceAlone(t *testing.T) {
 func TestMustBeRootForDefaultPath(t *testing.T) {
 	h := newHarness(t)
 	h.sys.euid = 1000
-	err := h.run(t, context.Background(), Options{ConfigPath: config.DefaultPath}, "")
+	err := h.run(context.Background(), t, Options{ConfigPath: config.DefaultPath}, "")
 	if err == nil || !strings.Contains(err.Error(), "sudo vmmon setup") {
 		t.Fatalf("err = %v", err)
 	}
@@ -842,7 +842,7 @@ func TestUnwritableDirectoryFailsEarly(t *testing.T) {
 		t.Fatal(err)
 	}
 	opts := Options{ConfigPath: filepath.Join(locked, "vmmon", "config.yaml"), NoStart: true}
-	err := h.run(t, context.Background(), opts, "")
+	err := h.run(context.Background(), t, opts, "")
 	if err == nil || !strings.Contains(err.Error(), "VMMON_CONFIG") {
 		t.Fatalf("err = %v", err)
 	}
@@ -870,7 +870,7 @@ func TestWidePermissionsRepaired(t *testing.T) {
 	}
 	opts := h.opts
 	opts.Yes, opts.NoStart = true, true
-	if err := h.run(t, context.Background(), opts, ""); err != nil {
+	if err := h.run(context.Background(), t, opts, ""); err != nil {
 		t.Fatal(err)
 	}
 	if mode(t, secrets) != 0o600 {
@@ -892,7 +892,7 @@ func TestOddTokensRoundTrip(t *testing.T) {
 	for _, tc := range tests {
 		t.Run(tc.token, func(t *testing.T) {
 			t.Setenv("VMMON_TELEGRAM_TOKEN", "")
-			os.Unsetenv("VMMON_TELEGRAM_TOKEN")
+			_ = os.Unsetenv("VMMON_TELEGRAM_TOKEN")
 			path := filepath.Join(t.TempDir(), "config.yaml")
 			if _, err := writeFiles(path, tc.token, "1", config.PresetQuiet, &bytes.Buffer{}); err != nil {
 				t.Fatal(err)

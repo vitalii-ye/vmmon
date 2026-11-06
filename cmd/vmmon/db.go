@@ -66,7 +66,7 @@ func newDBSyncCmd() *cobra.Command {
 			}
 			ch, feedErr := enrich.Open(cfg).Sync(cmd.Context())
 			if feedErr == nil {
-				fmt.Fprintf(out, "KEV: %s; EPSS: %s\n", kevSummary(ch), epssSummary(ch))
+				_, _ = fmt.Fprintf(out, "KEV: %s; EPSS: %s\n", kevSummary(ch), epssSummary(ch))
 			}
 			return errors.Join(syncErr, feedErr)
 		},
@@ -81,7 +81,7 @@ func printSync(w io.Writer, ecosystem string, res vulndb.SyncResult) {
 	if res.FullReason != "" {
 		mode += " (" + res.FullReason + ")"
 	}
-	fmt.Fprintf(w, "%s: %s sync: %d records changed, %d packages affected; %d records, %d packages total\n",
+	_, _ = fmt.Fprintf(w, "%s: %s sync: %d records changed, %d packages affected; %d records, %d packages total\n",
 		ecosystem, mode, res.RecordsChanged, len(res.ChangedPackages), res.Records, res.Packages)
 }
 
@@ -202,15 +202,15 @@ func dbStatus(cmd *cobra.Command, cfg *config.Config, ecosystem string) (statusR
 }
 
 func printStatus(w io.Writer, r statusReport, dir string) {
-	fmt.Fprintln(w, "Database directory:", dir)
+	_, _ = fmt.Fprintln(w, "Database directory:", dir)
 	if len(r.Ecosystems) == 0 {
-		fmt.Fprintln(w, "No ecosystem synced yet: run `vmmon db sync`.")
+		_, _ = fmt.Fprintln(w, "No ecosystem synced yet: run `vmmon db sync`.")
 	}
 	for _, st := range r.Ecosystems {
-		fmt.Fprintf(w, "%s: %d records, %d packages, %.1f MB, synced %s, last full %s\n",
+		_, _ = fmt.Fprintf(w, "%s: %d records, %d packages, %.1f MB, synced %s, last full %s\n",
 			st.Ecosystem, st.Records, st.Packages, float64(st.Size)/(1<<20), ago(st.LastSync), ago(st.LastFullSync))
 		if st.LastError != "" {
-			fmt.Fprintf(w, "  last error (%s): %s\n", ago(st.LastAttempt), st.LastError)
+			_, _ = fmt.Fprintf(w, "  last error (%s): %s\n", ago(st.LastAttempt), st.LastError)
 		}
 	}
 	printFeed(w, "KEV", r.KEV)
@@ -218,13 +218,13 @@ func printStatus(w io.Writer, r statusReport, dir string) {
 }
 
 func printFeed(w io.Writer, name string, f feedStatus) {
-	fmt.Fprintf(w, "%s: %d records", name, f.Records)
+	_, _ = fmt.Fprintf(w, "%s: %d records", name, f.Records)
 	if f.Version != "" {
-		fmt.Fprintf(w, ", version %s", f.Version)
+		_, _ = fmt.Fprintf(w, ", version %s", f.Version)
 	}
-	fmt.Fprintf(w, ", synced %s\n", ago(f.LastSync))
+	_, _ = fmt.Fprintf(w, ", synced %s\n", ago(f.LastSync))
 	if f.LastError != "" {
-		fmt.Fprintf(w, "  last error (%s): %s\n", ago(f.LastAttempt), f.LastError)
+		_, _ = fmt.Fprintf(w, "  last error (%s): %s\n", ago(f.LastAttempt), f.LastError)
 	}
 }
 

@@ -17,7 +17,7 @@ import (
 	"github.com/vitalii-ye/vmmon/internal/fsutil"
 )
 
-const tokenEnvKey = "VMMON_TELEGRAM_TOKEN"
+const tokenEnvKey = "VMMON_TELEGRAM_TOKEN" //nolint:gosec // an environment variable name, not a credential
 
 // writeFiles saves the three values setup owns and reports whether anything on
 // disk changed. The directory is created 0755 so the unprivileged daemon can
@@ -50,7 +50,7 @@ func ensureDir(dir string, warn io.Writer) error {
 		return err
 	}
 	if info.Mode().Perm()&0o005 != 0o005 {
-		fmt.Fprintf(warn, "Warning: %s has mode %04o, so the service may not be able to read the config.\n", dir, info.Mode().Perm())
+		_, _ = fmt.Fprintf(warn, "Warning: %s has mode %04o, so the service may not be able to read the config.\n", dir, info.Mode().Perm())
 	}
 	return nil
 }

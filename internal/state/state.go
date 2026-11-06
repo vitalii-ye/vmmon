@@ -82,7 +82,7 @@ func (s *Store) View(fn func(*Tx) error) error {
 	if err != nil {
 		return fmt.Errorf("open %s: %w", s.path, err)
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 	return db.View(func(tx *bolt.Tx) error { return fn(&Tx{tx: tx}) })
 }
 
@@ -102,7 +102,7 @@ func (s *Store) Update(fn func(*Tx) error) error {
 	if err != nil {
 		return fmt.Errorf("open %s: %w", s.path, err)
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 	if created {
 		// Root-run commands share this directory with the DynamicUser daemon.
 		if err := fsutil.MatchDirOwner(s.path); err != nil {

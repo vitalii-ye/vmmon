@@ -102,7 +102,7 @@ func TestScanPermissionDenied(t *testing.T) {
 	if err := os.Chmod(dir, 0o000); err != nil {
 		t.Fatal(err)
 	}
-	t.Cleanup(func() { os.Chmod(dir, 0o755) })
+	t.Cleanup(func() { _ = os.Chmod(dir, 0o755) })
 	_, _, err := runScan(t, dir, "--root", fixtureRoot)
 	if err == nil || !strings.Contains(err.Error(), "sudo vmmon scan") {
 		t.Errorf("err = %v", err)

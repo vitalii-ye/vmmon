@@ -202,31 +202,31 @@ func printHostStatus(w io.Writer, r *hostReport) {
 	if r.Ecosystem != "" {
 		header += " (" + r.Ecosystem + ")"
 	}
-	fmt.Fprintln(w, header)
-	fmt.Fprintf(w, "Open findings: %d (%d known exploited, %d with a fix, %d without a fix yet)\n",
+	_, _ = fmt.Fprintln(w, header)
+	_, _ = fmt.Fprintf(w, "Open findings: %d (%d known exploited, %d with a fix, %d without a fix yet)\n",
 		r.Findings.Total, r.Findings.KEV, r.Findings.FixAvailable, r.Findings.NoFixYet)
 	for _, k := range r.TopKEV {
-		fmt.Fprintf(w, "  %s  %s %s%s\n", k.Vuln, k.Package, k.Version, fixSuffix(k.FixedVersion, false))
+		_, _ = fmt.Fprintf(w, "  %s  %s %s%s\n", k.Vuln, k.Package, k.Version, fixSuffix(k.FixedVersion, false))
 	}
 	if more := r.Findings.KEV - len(r.TopKEV); more > 0 {
-		fmt.Fprintf(w, "  ...and %d more: `vmmon scan`\n", more)
+		_, _ = fmt.Fprintf(w, "  ...and %d more: `vmmon scan`\n", more)
 	}
 	if r.RebootRequired {
-		fmt.Fprintln(w, "Reboot required.")
+		_, _ = fmt.Fprintln(w, "Reboot required.")
 	}
-	fmt.Fprintf(w, "Last scan: %s (full: %s, %d packages)\n", ago(r.LastScan), ago(r.LastFullScan), r.Packages)
-	fmt.Fprintf(w, "Last digest: %s\n", ago(r.LastDigest))
-	fmt.Fprintf(w, "Database: synced %s\n", ago(r.Database.LastSync))
+	_, _ = fmt.Fprintf(w, "Last scan: %s (full: %s, %d packages)\n", ago(r.LastScan), ago(r.LastFullScan), r.Packages)
+	_, _ = fmt.Fprintf(w, "Last digest: %s\n", ago(r.LastDigest))
+	_, _ = fmt.Fprintf(w, "Database: synced %s\n", ago(r.Database.LastSync))
 	if r.Database.LastError != "" {
-		fmt.Fprintf(w, "  last error (%s): %s\n", ago(r.Database.LastAttempt), r.Database.LastError)
+		_, _ = fmt.Fprintf(w, "  last error (%s): %s\n", ago(r.Database.LastAttempt), r.Database.LastError)
 	}
 	printFeed(w, "KEV", r.KEV)
 	printFeed(w, "EPSS", r.EPSS)
-	fmt.Fprintf(w, "Channel: %s, token %s, %d queued, last delivery %s\n", r.Channel.Name, r.Channel.Token, r.Channel.QueueLength, ago(r.Channel.LastOK))
+	_, _ = fmt.Fprintf(w, "Channel: %s, token %s, %d queued, last delivery %s\n", r.Channel.Name, r.Channel.Token, r.Channel.QueueLength, ago(r.Channel.LastOK))
 	if r.Channel.LastError != "" {
-		fmt.Fprintf(w, "  last error (%s): %s\n", ago(r.Channel.LastErrorAt), r.Channel.LastError)
+		_, _ = fmt.Fprintf(w, "  last error (%s): %s\n", ago(r.Channel.LastErrorAt), r.Channel.LastError)
 	}
 	for _, warning := range r.Warnings {
-		fmt.Fprintln(w, "Warning:", warning)
+		_, _ = fmt.Fprintln(w, "Warning:", warning)
 	}
 }
