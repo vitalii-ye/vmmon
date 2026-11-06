@@ -2,7 +2,7 @@
 
 vmmon watches a Debian or Ubuntu VM for known vulnerabilities and tells you on Telegram when a new one affects it. It is one static binary and a systemd service. It keeps a local copy of the [OSV](https://osv.dev) data for your release, rechecks after every database sync and package change, and alerts only on new findings that pass your alert policy.
 
-Supported: Debian 12, 13 and Ubuntu 22.04, 24.04, on amd64 and arm64.
+Supported: Debian 12, 13 and Ubuntu 22.04, 24.04, on amd64 and arm64. The Docker integration tests run on Debian 13 and Ubuntu 24.04.
 
 ## Install
 

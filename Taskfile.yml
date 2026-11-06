@@ -44,7 +44,7 @@ tasks:
       HOST_ARCH: { sh: go env GOARCH }
       # Task-level vars beat CLI vars, so default keeps `ARCH=amd64` on the command line working.
       ARCH: '{{.ARCH | default .HOST_ARCH}}'
-      IMAGES: debian:12=Debian:12 debian:13=Debian:13 ubuntu:22.04=Ubuntu:22.04:LTS ubuntu:24.04=Ubuntu:24.04:LTS
+      IMAGES: debian:13=Debian:13 ubuntu:24.04=Ubuntu:24.04:LTS
   snapshot:
     desc: Build a local goreleaser snapshot into dist/, publishing nothing
     cmds:

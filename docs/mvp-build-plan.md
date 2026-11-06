@@ -205,7 +205,7 @@ flowchart LR
 | Unit | Range evaluation, unfixed records, alias dedup | Hand-written OSV records in `testdata/` |
 | Golden | Full scan pipeline | Fixture dpkg status file + frozen OSV snapshot → expected findings JSON; `-update` flag regenerates |
 | Differential | Matching accuracy | Same pinned old Debian/Ubuntu images scanned by vmmon and by osv-scanner; every difference triaged and either fixed or documented |
-| Integration | Real distros | CI matrix runs the static binary inside debian:12, debian:13, ubuntu:22.04, ubuntu:24.04 containers with a fixture DB |
+| Integration | Real distros | CI matrix runs the static binary inside debian:13 and ubuntu:24.04 containers with a fixture DB |
 | Contract | Telegram | `httptest` fake Bot API: pairing (right code, wrong code, timeout), webhook already set, message splitting, 429 `retry_after`, network failure → queued |
 | Scenario | Daemon behaviour | Fake clock and fake DB updates: new advisory → 1 alert; same advisory next cycle → 0 alerts; package upgraded → resolved in digest; CVE added to KEV → 1 escalation; sync failing 48 h → staleness alert; restart → no re-alerts |
 | Manual E2E | Whole flow | Real bot on a throwaway VM before each release |

@@ -853,14 +853,19 @@ func TestSlots(t *testing.T) {
 // advisory on a real fixture root ends as one Telegram message.
 func TestEndToEndThroughRealScanAndTelegram(t *testing.T) {
 	const root = "../inventory/testdata/debian12"
-	now := time.Now().UTC()
-	clock := now
+	// The clock is pinned just after the 09:00 digest slot, so the two sync
+	// intervals below end at 21:32 the same day and no digest falls in the
+	// window. Starting from time.Now() made the test depend on the time of day.
+	clock := time.Date(2026, 3, 2, 9, 30, 0, 0, time.UTC)
 
 	server := telegramtest.New(t)
 	cfg := config.Default()
 	cfg.StateDir = t.TempDir()
 	cfg.Hostname = "web-01"
 	cfg.Telegram.Token, cfg.Telegram.ChatID, cfg.Telegram.APIBaseURL = telegramtest.Token, "42", server.URL
+	if end := clock.Add(2 * (cfg.DB.SyncInterval + time.Minute)); end.Day() != clock.Day() {
+		t.Fatalf("window ends %v, the next day: it would span a 09:00 digest slot", end)
+	}
 
 	build := func(records map[string][]byte) {
 		scantest.BuildDB(t, cfg.DBDir(), eco, "Debian", records, scantest.Feeds{

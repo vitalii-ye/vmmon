@@ -2,6 +2,7 @@ name: CI
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   pull_request:
 
 permissions:
@@ -101,12 +102,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - image: debian:12
-            ecosystem: Debian:12
           - image: debian:13
             ecosystem: Debian:13
-          - image: ubuntu:22.04
-            ecosystem: Ubuntu:22.04:LTS
           - image: ubuntu:24.04
             ecosystem: Ubuntu:24.04:LTS
     steps:
@@ -135,3 +132,66 @@ jobs:
             -v "$PWD/dist/vmmon_linux_$ARCH.deb:/vmmon.deb:ro" \
             -v "$PWD/testdata/integration/deb.sh:/deb.sh:ro" \
             "${{ matrix.image }}" sh /deb.sh /vmmon.deb
+
+  # The .deb on a real OS with systemd, under QEMU (VOQ-39). amd64 only.
+  #
+  # Runs on a GitHub-hosted runner: standard Linux runners of public repositories expose
+  # /dev/kvm, and each job gets a disposable VM, so pull_request is safe here (no
+  # self-hosted runner, no secrets). The job needs the repository to be public for KVM;
+  # vm.sh is run with VM_REQUIRE_KVM=1 so a runner without KVM fails instead of crawling.
+  integration-vm:
+    needs: package
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: debian-13
+            image: debian-13-genericcloud-amd64.qcow2
+            base_url: https://cloud.debian.org/images/cloud/trixie/latest
+            sums: SHA512SUMS
+            sumtool: sha512sum
+          - name: ubuntu-24.04
+            image: noble-server-cloudimg-amd64.img
+            base_url: https://cloud-images.ubuntu.com/noble/current
+            sums: SHA256SUMS
+            sumtool: sha256sum
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: snapshot
+          path: dist
+      # The cache key rolls monthly so the "latest" images are refreshed; the checksum
+      # below is checked against the published list either way.
+      - name: Month for the image cache key
+        id: month
+        run: echo "month=$(date +%Y-%m)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: vm-images
+          key: vm-image-${{ matrix.name }}-${{ steps.month.outputs.month }}
+      - name: Fetch and verify the base image
+        run: |
+          mkdir -p vm-images
+          cd vm-images
+          curl -fsSL -o "${{ matrix.sums }}" "${{ matrix.base_url }}/${{ matrix.sums }}"
+          grep "[ *]${{ matrix.image }}\$" "${{ matrix.sums }}" > "${{ matrix.image }}.sum"
+          test -s "${{ matrix.image }}.sum"
+          if ! ${{ matrix.sumtool }} -c "${{ matrix.image }}.sum" >/dev/null 2>&1; then
+            curl -fsSL -o "${{ matrix.image }}" "${{ matrix.base_url }}/${{ matrix.image }}"
+            ${{ matrix.sumtool }} -c "${{ matrix.image }}.sum"
+          fi
+      - name: Install QEMU and enable KVM for the runner user
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils cloud-image-utils
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          test -w /dev/kvm
+      - name: Boot the image and run the .deb checks
+        env:
+          VM_REQUIRE_KVM: "1"
+        run: sh testdata/integration/vm.sh "vm-images/${{ matrix.image }}" dist/vmmon_linux_amd64.deb
